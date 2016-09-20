@@ -1,0 +1,17 @@
+@objects
+    input-box   id  login
+    login-btn   xpath   //button[@type='submit'][1]
+
+= Login =
+    @on desktop
+        input-box:
+            width 3.33% of screen/width
+            height 3.03% of screen/height
+            inside screen  46px top, 147px left, 1422px right, 754px bottom
+
+        input-box:
+            width 265% of login-btn/width
+            height 92% of login-btn/height
+            aligned horizontally all login-btn 1px
+            left-of login-btn 4px
+            centered vertically inside login-btn
