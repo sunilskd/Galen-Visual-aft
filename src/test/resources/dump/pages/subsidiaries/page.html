@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Galen Page Dump</title>
+        <link rel="stylesheet" type="text/css" href="galen-pagedump.css"></link>
+        <script src="jquery-1.11.2.min.js"></script>
+        <script src="galen-pagedump.js"></script>
+        <script>
+var pageData = {"title":"KYC Web App","items":{"viewport":{"area":[0,0,1266,842],"hasImage":true},"screen":{"area":[0,0,1266,842],"hasImage":true},"subsidiaries-list-2":{"area":[192,330,1044,62],"hasImage":true},"subsidiaries-list-1":{"area":[192,268,1044,62],"hasImage":true},"subsidiaries-list-4":{"area":[192,454,1044,62],"hasImage":true},"subsidiaries-list-3":{"area":[192,392,1044,62],"hasImage":true},"subs-table-heading":{"area":[192,253,605,15],"hasImage":true},"subsidiaries-list-5":{"area":[192,516,1044,62],"hasImage":true},"filter-percent":{"area":[20,240,130,63],"hasImage":true},"footer":{"area":[0,775,1266,47],"hasImage":true},"owners-menu":{"area":[124,154,60,21],"hasImage":true},"subs-menu":{"area":[189,154,87,21],"hasImage":true},"filter-country":{"area":[20,354,130,13],"hasImage":true},"subs-header-lable":{"area":[192,211,1044,22],"hasImage":true},"summary-menu":{"area":[1071,154,78,21],"hasImage":true},"filter-section":{"area":[0,195,162,463],"hasImage":true}},"pageName":"Subsidiaries"};
+        </script>
+    </head>
+
+    <body>
+        <script>
+            $(function () {
+                initGalenPageDump(pageData);
+            });
+        </script>
+        <h1>Subsidiaries - Galen page dump</h1>
+        <div class="image">
+            <div class="canvas">
+            </div>
+            <img src="page.png">
+            <div class="bottombarstub"></div>
+        </div>
+        <div id="sidebar">
+            <div class="wrapper">
+                <div id="object-list">
+                    <h2>All objects:</h2>
+                    <ul>
+                    </ul>
+                </div>
+                <div id="object-details" style="display: none;">
+                    <h2>Details</h2>
+                    <span class="field-name">Name:</span>
+                    <span class="field-value xf-object-name"></span>
+
+                    <span class="field-name">Area:</span>
+                    <span class="field-value xf-object-area"></span>
+
+                    <span class="field-name">Image:</span>
+                    <div class="image"></div>
+
+                </div>
+                <div class="bottombarstub"></div>
+            </div>
+        </div>
+        <div id="bottombar">
+            <div class="wrapper">
+                <div id="object-suggestions" style="display: none;">
+                    <h2>Spec Suggestions</h2>
+                    <div class="spec-list">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
