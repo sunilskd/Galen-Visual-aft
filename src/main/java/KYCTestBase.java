@@ -3,6 +3,9 @@ import com.galenframework.testng.GalenTestNgTestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
 
 import java.io.IOException;
 
@@ -17,7 +20,13 @@ public class KYCTestBase extends GalenTestNgTestBase {
     private By login_button_xpath = By.xpath("//button[1]");
 
     public WebDriver createDriver(Object[] args) {
-        return new FirefoxDriver();
+        System.setProperty("webdriver.chrome.driver", getClass().getResource("/ChromeDriver.exe").getPath());
+        return new ChromeDriver();
+
+        //System.setProperty("webdriver.ie.driver", getClass().getResource("/InternetExplorerDriver.exe").getPath());
+        //return new InternetExplorerDriver();
+
+        //return new FirefoxDriver();
     }
 
     public void openWebApp(String url){
