@@ -1,8 +1,12 @@
 import com.galenframework.api.GalenPageDump;
+import com.galenframework.support.GalenJavaTestBase;
 import com.galenframework.testng.GalenTestNgTestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
@@ -16,14 +20,43 @@ public class KYCTestBase extends GalenTestNgTestBase {
     private By user_login_input_box_id = By.xpath("//input[@id='login']");
     private By login_button_xpath = By.xpath("//button[1]");
 
+
+    /**
+     * Used in order to initialize a {@link WebDriver}
+     *
+     * @param args the arguments of current test
+     * @return
+     */
+//    @Override
+//    public WebDriver createDriver(Object[] args) {
+//        return null;
+//    }
+
+
+
+
+
+
     public WebDriver createDriver(Object[] args) {
+    System.out.print("Check");
+    if (System.getProperty("browserName").equals("IE")){
+        System.setProperty("webdriver.ie.driver", getClass().getResource("/InternetExplorerDriver.exe").getPath());
+        return new InternetExplorerDriver();
+        }else if (System.getProperty("browserName").equals("Chrome")){
+         System.setProperty("webdriver.chrome.driver", getClass().getResource("/ChromeDriver.exe").getPath());
+        return new ChromeDriver();
+    }else{
         return new FirefoxDriver();
+    }
+
+
     }
 
     public void openWebApp(String url){
         if(url.equals("")) {
             load(WEB_APP_URL);
         }else load(url);
+        getDriver().manage().window().maximize();
     }
 
     public void dumpPage(String pageName, String specPath, String dumpDir){
@@ -54,4 +87,6 @@ public class KYCTestBase extends GalenTestNgTestBase {
         }
 
     }
+
+
 }
