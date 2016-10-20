@@ -1,0 +1,62 @@
+@objects
+    footer id footer
+    contact-us  xpath   //*[@id='footer']/ul/li[1]
+    help    xpath   //*[@id='footer']/ul/li[2]
+    portfolio   xpath   //*[@id='footer']/ul/li[3]
+    about-us    xpath   //*[@id='footer']/ul/li[4]
+    terms-condition xpath   //*[@id='footer']/ul/li[5]
+    privacy-policy  xpath   //*[@id='footer']/ul/li[6]
+    disclaimer  xpath   //*[@id='footer']/ul/li[7]
+    editorial-policy    xpath   //*[@id='footer']/ul/li[8]
+    relx-logo   xpath   //*[@id='footer']/a[1]
+    accuity-logo    xpath  //*[@id='footer']/a[2]
+
+
+
+
+
+= Footer Validation =
+    @on desktop
+        footer:
+            inside partly screen  20px bottom
+
+
+        contact-us:
+            width 3.17 to 3.28% of footer/width
+            height 23.4% of footer/height
+            inside footer  6px top, 20px left, 30px bottom
+
+        help:
+            aligned horizontally all contact-us
+            right-of contact-us 0px
+
+        portfolio:
+            aligned horizontally all help
+            right-of help 0px
+
+        about-us:
+            aligned horizontally all portfolio
+            right-of portfolio 0px
+
+        terms-condition:
+            aligned horizontally all about-us
+            right-of about-us 0px
+
+        privacy-policy:
+            inside partly terms-condition  ~ 111px left
+            aligned horizontally all terms-condition
+
+        disclaimer:
+            aligned horizontally all privacy-policy
+            right-of privacy-policy 0px
+
+        editorial-policy:
+            aligned horizontally all disclaimer
+            right-of disclaimer 0px
+
+        relx-logo:
+            right-of editorial-policy ~ 45px
+
+        accuity-logo:
+            inside partly relx-logo  ~ 141px left
+            aligned horizontally all relx-logo
