@@ -16,8 +16,7 @@ public class OwnersGraph extends KYCTestBase {
     private String nodeOnLevelxpath = "//*[local-name()='g'][contains(@class,'node')][@parent='";
 
     @Test
-    public void verifyOwnersSummaryPage(){
-
+    public void verifyOwnersGraph(){
         openWebApp("");
         login(readProperties.getUboUser());
         openWebApp(ownersGraph);
@@ -25,7 +24,7 @@ public class OwnersGraph extends KYCTestBase {
         determiningNumberOfLevels(allNodesxpath);
         determiningNodesOnEachLevel(nodeOnLevelxpath);
         //dumpPage("Owners Graph","specs/ownersGraph.gspec","ownersGraph");
-//        checkPageLayout("specs/ownersGraph.gspec");
+        checkPageLayout("specs/ownersGraph.gspec");
     }
 
     public void clickOnZoomOutButton(){
@@ -67,17 +66,12 @@ public class OwnersGraph extends KYCTestBase {
         * The below for loop shall iterate through node collected from each level (Line 70)
         * IF loop would check if level has more than one node present (Line 71)
         * FOR loop would iterate through the list which contains all the nodes present on that level and in that for loop we are extracting the co-ordinates of the node (Line 76)
-        *
-        *
         * */
         for(int i=0;i<nodeOnLevel.length;i++){
-
             /*
                * The below loop is only for validating x axis difference.
                *
                **/
-
-
             if (nodeOnLevel[i].size() > 1) {
                 List<Float> x_axisValue = new ArrayList<Float>();
                 String[] co_ordinates;
@@ -89,10 +83,8 @@ public class OwnersGraph extends KYCTestBase {
                         if(xco_ordinate.contains("translate")){
                             xco_ordinate = xco_ordinate.substring(10);
                             x_axisValue.add(Float.parseFloat(xco_ordinate));
-
                         }
                     }
-
                 }
 
                    /* * The below lines of the code are used for comparing the value of the X co-ordinates which we have stored in a list in the above code.
@@ -112,10 +104,7 @@ public class OwnersGraph extends KYCTestBase {
                         a++;
                         b++;
                     }
-
                 }
-
-
 
             }
         }
@@ -152,17 +141,6 @@ public class OwnersGraph extends KYCTestBase {
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
