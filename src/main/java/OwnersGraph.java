@@ -11,12 +11,12 @@ import java.util.List;
 public class OwnersGraph extends KYCTestBase {
     private int parentValue=0;
     private By zoomOutButton = By.xpath(".//*[@name='zoom-out']");
-    public String ownersGraph = "https://internal-uboqa-web-1999720210.us-east-1.elb.amazonaws.com/kyc-webapp/#/legalEntity/1038/ownership/owners/graph";
+    public String ownersGraph = "https://internal-uboqa-web-1999720210.us-east-1.elb.amazonaws.com/kyc-webapp/#/legalEntity/211/ownership/groupStructure/graph";
     private By allNodesxpath = By.xpath("//*[local-name()='g'][contains(@class,'node')]");
     private String nodeOnLevelxpath = "//*[local-name()='g'][contains(@class,'node')][@parent='";
 
     @Test
-    public void verifyOwnersGraph(){
+    public void verifyOwnersGraph() throws Exception {
         openWebApp("");
         login(readProperties.getUboUser());
         openWebApp(ownersGraph);
@@ -24,7 +24,7 @@ public class OwnersGraph extends KYCTestBase {
         determiningNumberOfLevels(allNodesxpath);
         determiningNodesOnEachLevel(nodeOnLevelxpath);
         //dumpPage("Owners Graph","specs/ownersGraph.gspec","ownersGraph");
-        checkPageLayout("specs/ownersGraph.gspec");
+//        checkPageLayout("specs/ownersGraph.gspec");
     }
 
     public void clickOnZoomOutButton(){
@@ -48,7 +48,7 @@ public class OwnersGraph extends KYCTestBase {
         System.out.println("***************No. of Levels in graph are :"+parentValue+"**************");
     }
 
-    public void determiningNodesOnEachLevel(String nodeOnLevelxpath){
+    public void determiningNodesOnEachLevel(String nodeOnLevelxpath) throws Exception {
        /* So we need the below three lines are we need to create dynamic arraylist which can store node from each elements
        * In the for loop from line 61 to 64 we are storing elements from each level in the respective array
        */
@@ -96,10 +96,11 @@ public class OwnersGraph extends KYCTestBase {
                 int b = a+1;
                 for(int size=0;size<=x_axisValue.size();size++){
                     if(b<x_axisValue.size()){
-                        if(x_axisValue.get(a)-x_axisValue.get(b)>=210){
+                        if(x_axisValue.get(a)-x_axisValue.get(b)>=210 || x_axisValue.get(a)-x_axisValue.get(b)==0 || x_axisValue.get(a)-x_axisValue.get(b)<=-210){
 //                            System.out.println("Nodes are not overlapping on X axis");
                         }else{
-                            System.out.println("Node are overlapping on X axis:"+x_axisValue.get(a)+" and "+x_axisValue.get(b));
+
+                            throw new Exception("Node are overlapping on X axis:"+x_axisValue.get(a)+" and "+x_axisValue.get(b));
                         }
                         a++;
                         b++;
@@ -131,10 +132,11 @@ public class OwnersGraph extends KYCTestBase {
         int b = a + 1;
         for (int size = 0; size <= y_axisValue.size(); size++) {
             if (b < y_axisValue.size()) {
-                if (y_axisValue.get(a) - y_axisValue.get(b) >= 250 || y_axisValue.get(a) - y_axisValue.get(b) >= -250 || y_axisValue.get(a) - y_axisValue.get(b) == 0) {
+                if (y_axisValue.get(a) - y_axisValue.get(b) >= 250.0 || y_axisValue.get(a) - y_axisValue.get(b) <= -250.0 || y_axisValue.get(a) - y_axisValue.get(b) == 0) {
 //                    System.out.println("Nodes are not overlapping on Y axis");
                 } else {
-                    System.out.println("Node are overlapping on Y axis:" + y_axisValue.get(a) + " and " + y_axisValue.get(b));
+                    
+                    throw new Exception("Node are overlapping on Y axis:" + y_axisValue.get(a) + " and " + y_axisValue.get(b));
                 }
                 a++;
                 b++;

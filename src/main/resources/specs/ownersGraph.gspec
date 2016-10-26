@@ -23,7 +23,6 @@
         owners_graph-header:
             width 92 to 100% of screen/width
             height ~ 2.75% of screen/height
-            inside partly screen ~ 1556px bottom
             aligned horizontally top screen
             text contains "Ownership Module"
 
