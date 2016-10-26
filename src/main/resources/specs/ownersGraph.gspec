@@ -12,10 +12,10 @@
     ownersgraph-notification-message-large-graph    xpath   //*[@id='content-view']/div[2]/p
     ownersgraph-node-last-level-leftmost-node   xpath   //*[local-name()='g'][@id='6']
     ownersgraph-node-last-level-secondleftmost-node xpath   //*[local-name()='g'][@id='7']
-    ownersgraph-forthlevel-node xpath   //*[local-name()='g'][@id='5']
-    ownersgraph-thirdlevel-node xpath   //*[local-name()='g'][@id='4']
-    ownersgraph-secondlevel-node xpath   //*[local-name()='g'][@id='3']
-    ownersgraph-firstlevel-node xpath   //*[local-name()='g'][@id='2']
+    ownersgraph-forthlevel-node* xpath   //*[local-name()='g'][@parent='4']
+    ownersgraph-thirdlevel-node* xpath   //*[local-name()='g'][@parent='3']
+    ownersgraph-secondlevel-node* xpath   //*[local-name()='g'][@parent='2']
+    ownersgraph-firstlevel-node* xpath   //*[local-name()='g'][@parent='1']
     ownersgraph-root-node xpath   //*[local-name()='g'][@id='1']
     ownersgraph-graph-control-graph-zoom    xpath   //*[@id='content-view']/div[4]/div[1]
     ownersgraph-graph-control-percentage-filter xpath   //*[@id='content-view']/div[4]/div[2]
@@ -103,26 +103,28 @@
 
 =Validating Nodes on each level are equidistant from nodes of next level and of same dimensions=
         ownersgraph-root-node:
-            width 100% of ownersgraph-firstlevel-node/width
-            width 100% of ownersgraph-forthlevel-node/width
-            width 100% of ownersgraph-secondlevel-node/width
-            width 100% of ownersgraph-thirdlevel-node/width
-            height 100% of ownersgraph-firstlevel-node/height
-            height 100% of ownersgraph-forthlevel-node/height
-            height 100% of ownersgraph-secondlevel-node/height
-            height 100% of ownersgraph-thirdlevel-node/height
-            below ownersgraph-firstlevel-node ~ 38px
+            width 100% of ownersgraph-firstlevel-node1/width
+            width 100% of ownersgraph-forthlevel-node1/width
+            width 100% of ownersgraph-secondlevel-node1/width
+            width 100% of ownersgraph-thirdlevel-node1/width
+            height 100% of ownersgraph-firstlevel-node1/height
+            height 100% of ownersgraph-forthlevel-node1/height
+            height 100% of ownersgraph-secondlevel-node1/height
+            height 100% of ownersgraph-thirdlevel-node1/height
+            below ownersgraph-firstlevel-node1 ~ 38px
 
-        ownersgraph-firstlevel-node:
-            below ownersgraph-secondlevel-node ~ 38px
+        @if ${isVisible("ownersgraph-firstlevel-node1") && isVisible("ownersgraph-secondlevel-node1")}
+        ownersgraph-firstlevel-node1:
+            below ownersgraph-secondlevel-node1 ~ 38px
 
-        ownersgraph-secondlevel-node:
-            below ownersgraph-thirdlevel-node ~ 38px
+        @if $(isVisible("ownersgraph-secondlevel-node*") && isVisible("ownersgraph-thirdlevel-node*")
+        ownersgraph-secondlevel-node1:
+            below ownersgraph-thirdlevel-node1 ~ 38px
 
-        ownersgraph-thirdlevel-node:
-            below ownersgraph-forthlevel-node ~ 38px
+        ownersgraph-thirdlevel-node1:
+            below ownersgraph-forthlevel-node1 ~ 38px
 
-        ownersgraph-forthlevel-node:
+        ownersgraph-forthlevel-node1:
             below ownersgraph-node-last-level-leftmost-node ~ 38px
 
 =Validating components in graph control are not over lapping =
