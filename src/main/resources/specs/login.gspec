@@ -1,5 +1,5 @@
 @objects
-    input-box   id  login
+    input-box   id      login
     login-btn   xpath   //button[@type='submit'][1]
 
 = Login =

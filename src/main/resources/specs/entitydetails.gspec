@@ -242,19 +242,19 @@
             # Verifying giin table w.r.t giin table
             giin-table:
                 aligned horizontally all lei-table
-                left-of lei-table 54px
+                left-of lei-table 53 to 54px
 
             # Verifying fatca status table w.r.t stock symbol table
             fatca-status-table:
                 aligned horizontally all stock-symbol-table
-                left-of stock-symbol-table 54px
+                left-of stock-symbol-table 53 to 54px
 
     = Section Heading =
 
         # Verifying summary heading w.r.t head office table
         section-heading-1:
             aligned vertically left head-office-table
-            above head-office-table 31px
+            above head-office-table 30 to 31px
 
         # Verifying identifiers heading w.r.t giin table
         # Verifying identifiers heading w.r.t website table
@@ -270,27 +270,33 @@
         section-heading-3:
             aligned vertically left fatca-status-table
             aligned vertically left swift-bic-table
-            above swift-bic-table 30px
+            above swift-bic-table 30 to 31px
             below fatca-status-table 50px
 
     = CSS =
         # Verifying summary, identifiers and swift/bic text
         section-heading-*:
-            css font-family is "Arial,Helvetica,sans-serif"
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
             css font-size is "19.2px"
             css font-style is "normal"
             css color is "rgba(153, 153, 153, 1)"
 
         # Verifying table heading text
         table-heading-*:
-            css font-family is "Arial,Helvetica,sans-serif"
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
             css font-size is "16px"
             css font-style is "normal"
             css color is "rgba(102, 102, 102, 1)"
 
         # Verifying table data text
         table-data-*:
-            css font-family is "Arial,Helvetica,sans-serif"
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
             css font-size is "12.8px"
             css font-style is "normal"
             css color is "rgba(102, 102, 102, 1)"

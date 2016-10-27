@@ -21,24 +21,17 @@ public class KYCTestBase extends GalenTestNgTestBase {
     private By login_button_xpath = By.xpath("//button[1]");
     public static ReadProperties readProperties = new ReadProperties();
 
-    /**
-     * Used in order to initialize a {@link WebDriver}
-     *
-     * @param args the arguments of current test
-     * @return
-     */
-
     public WebDriver createDriver(Object[] args) {
-    if (readProperties.getBrowser().equals("IE")){
-        System.setProperty("webdriver.ie.driver", getClass().getResource("/InternetExplorerDriver.exe").getPath());
-        return new InternetExplorerDriver();
-        }else if (readProperties.getBrowser().equals("Chrome")){
-         System.setProperty("webdriver.chrome.driver", getClass().getResource("/ChromeDriver.exe").getPath());
-        return new ChromeDriver();
-    }else if (readProperties.getBrowser().equals("Firefox")){
-        return new FirefoxDriver();
+    if (readProperties.getBrowser().equals("ie")){
+            System.setProperty("webdriver.ie.driver", getClass().getResource("/InternetExplorerDriver.exe").getPath());
+            return new InternetExplorerDriver();
+    }   else if (readProperties.getBrowser().equals("chrome")){
+            System.setProperty("webdriver.chrome.driver", getClass().getResource("/ChromeDriver.exe").getPath());
+            return new ChromeDriver();
+    }   else if (readProperties.getBrowser().equals("firefox")){
+            return new FirefoxDriver();
     }
-        return null;
+            return null;
     }
 
     public void openWebApp(String url){
@@ -67,6 +60,9 @@ public class KYCTestBase extends GalenTestNgTestBase {
     }
 
     public void login(String username){
+        if(readProperties.getBrowser().equals("ie")) {
+            getDriver().findElement(By.xpath("//a[@id='overridelink']")).click();
+        }
         try {
             Thread.sleep(2000);
             getDriver().findElement(user_login_input_box_id).sendKeys(username);
@@ -75,8 +71,5 @@ public class KYCTestBase extends GalenTestNgTestBase {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
-
-
 }
