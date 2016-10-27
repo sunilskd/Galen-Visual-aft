@@ -5,13 +5,12 @@
 = Login =
     @on desktop
         input-box:
-            width 3.33% of screen/width
-            height 3.03% of screen/height
-            inside screen  46px top, 147px left, 1422px right, 754px bottom
+            width 7.44% of screen/width
+            height 2.11% of screen/height
+            inside screen  47px top, 1777px right, 1019px bottom
+            aligned vertically left screen
 
-        input-box:
-            width 265% of login-btn/width
-            height 92% of login-btn/height
-            aligned horizontally all login-btn 1px
-            left-of login-btn 4px
-            centered vertically inside login-btn
+        screen:
+            width 1342% of input-box/width
+            height 4734% of input-box/height
+            aligned vertically left input-box

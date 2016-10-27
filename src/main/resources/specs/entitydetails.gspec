@@ -1,23 +1,296 @@
 @objects
-    table-* xpath   //table
-    section-header-*  xpath   //*[@id='content-view']/h1
-    table-heading-*   xpath   //table/tbody/tr/th
-    table-data-*  xpath   //table/tbody/tr/td
 
-= Summary Tables =
-    @on desktop
-        table-1:
-            aligned horizontally top table-2
-            left-of table-2 54px
+    head-office-table                   xpath   //*[@id='entity-head-office'] //tr[th='Head Office']
+    head-office-header                  xpath   //*[@id='entity-head-office'] //tr[th='Head Office']/th
+    head-office-data                    xpath   //*[@id='entity-head-office'] //tr[th='Head Office']/td
+    head-office-address-text-*          xpath   //*[@id='entity-head-office'] //tr[th='Head Office'] //span
 
-        table-2:
-            aligned horizontally top table-1
-            right-of table-1 54px
+    registered-office-table             xpath   //*[@id='entity-head-office'] //tr[th='Registered Office']
+    registered-office-header            xpath   //*[@id='entity-head-office'] //tr[th='Registered Office']/th
+    registered-office-data              xpath   //*[@id='entity-head-office'] //tr[th='Registered Office']/td
+    registered-office-address-text-*    xpath   //*[@id='entity-head-office'] //tr[th='Registered Office'] //span
 
-        table-heading-2:
-            aligned vertically left section-header-2
-            above section-header-2 50px
+    website-table                       xpath   //*[@id='entity-head-office'] //tr[th='Website']
+    website-header                      xpath   //*[@id='entity-head-office'] //tr[th='Website']/th
+    website-data                        xpath   //*[@id='entity-head-office'] //tr[th='Website']/td
+    website-text-*                      xpath   //*[@id='entity-head-office'] //tr[th='Website'] //a
 
-        section-header-2:
-            aligned vertically left table-heading-2
-            below table-heading-2 50px
+    regulator-table                     xpath   //*[@id='entity-regulator'] //tr[th='Regulator']
+    regulator-header                    xpath   //*[@id='entity-regulator'] //tr[th='Regulator']/th
+    regulator-data                      xpath   //*[@id='entity-regulator'] //tr[th='Regulator']/td
+    regulator-text-*                    xpath   //*[@id='entity-regulator'] //tr[th='Regulator'] //span
+
+    stock-exchange-table                xpath   //*[@id='entity-regulator'] //tr[th='Stock Exchange']
+    stock-exchange-header               xpath   //*[@id='entity-regulator'] //tr[th='Stock Exchange']/th
+    stock-exchange-data                 xpath   //*[@id='entity-regulator'] //tr[th='Stock Exchange']/td
+    stock-exchange-text-*               xpath   //*[@id='entity-regulator'] //tr[th='Stock Exchange'] //span/span
+
+    giin-table                          xpath   //*[@id='entity-identifiers'] //tr[th='GIIN']
+    giin-header                         xpath   //*[@id='entity-identifiers'] //tr[th='GIIN']/th
+    giin-data                           xpath   //*[@id='entity-identifiers'] //tr[th='GIIN']/td
+
+    fatca-status-table                  xpath   //*[@id='entity-identifiers'] //tr[th='FATCA Status']
+    fatca-status-header                 xpath   //*[@id='entity-identifiers'] //tr[th='FATCA Status']/th
+    fatca-status-data                   xpath   //*[@id='entity-identifiers'] //tr[th='FATCA Status']/td
+
+    lei-table                           xpath   //*[@id='entity-lei'] //tr[th='LEI']
+    lei-header                          xpath   //*[@id='entity-lei'] //tr[th='LEI']/th
+    lei-data                            xpath   //*[@id='entity-lei'] //tr[th='LEI']/td
+    lei-text-*                          xpath   //*[@id='entity-lei'] //tr[th='LEI'] //span
+
+    stock-symbol-table                  xpath   //*[@id='entity-lei'] //tr[th='Stock Symbol']
+    stock-symbol-header                 xpath   //*[@id='entity-lei'] //tr[th='Stock Symbol']/th
+    stock-symbol-data                   xpath   //*[@id='entity-lei'] //tr[th='Stock Symbol']/td
+    stock-symbol-text-*                 xpath   //*[@id='entity-lei'] //tr[th='Stock Symbol'] //span/span
+
+    swift-bic-table                     xpath   //*[@id='entity-swift-bic'] //tr[th='SWIFT/BIC']
+    swift-bic-header                    xpath   //*[@id='entity-swift-bic'] //tr[th='SWIFT/BIC']/th
+    swift-bic-data                      xpath   //*[@id='entity-swift-bic'] //tr[th='SWIFT/BIC']/td
+    swift-bic-text-*                    xpath   //*[@id='entity-swift-bic'] //tr[th='SWIFT/BIC'] //span
+
+    section-heading-*                   xpath   //*[@id='content-view']/h1
+    table-heading-*                     xpath   //tr/th
+    table-data-*                        xpath   //tr/td
+
+= Entity Details =
+
+    = Summary =
+
+        # Verifying head office address lines w.r.t head office data section
+        = Head Office =
+            @if ${isVisible("head-office-address-text-1")}
+                 head-office-address-text-*:
+                     width 100% of head-office-data/width
+                     inside partly head-office-data
+                     aligned vertically all head-office-data
+
+            @if ${isVisible("head-office-address-text-2")}
+                 head-office-address-text-1:
+                     above head-office-address-text-2 0px
+
+            @if ${isVisible("head-office-address-text-3")}
+                 head-office-address-text-2:
+                     above head-office-address-text-3 0px
+
+        # Verifying registered office address lines w.r.t registered office data section
+        = Registered Office =
+            @if ${isVisible("registered-office-address-text-1")}
+                registered-office-address-text-*:
+                    width 100% of registered-office-data/width
+                    inside partly registered-office-data
+                    aligned vertically all registered-office-data
+
+            @if ${isVisible("registered-office-address-text-2")}
+                registered-office-address-text-1:
+                    above registered-office-address-text-2 0px
+
+            @if ${isVisible("registered-office-address-text-3")}
+                registered-office-address-text-2:
+                    above registered-office-address-text-3 0px
+
+        # Verifying website w.r.t website data section
+        = Website =
+            @if ${isVisible("website-text-1")}
+                website-text-*:
+                    inside partly website-data
+
+        # Verifying regulator w.r.t regulator data section
+        = Regulator =
+            @if ${isVisible("regulator-text-1")}
+                regulator-text-*:
+                    width 100% of regulator-data/width
+                    inside partly regulator-data
+                    aligned vertically all regulator-data
+
+            @if ${isVisible("regulator-text-2")}
+                regulator-text-1:
+                    above regulator-text-2 0px
+
+        # Verifying stock exchange w.r.t stock exchange data section
+        = Stock Exchange =
+            @if ${isVisible("stock-exchange-text-*")}
+                stock-exchange-text-*:
+                    width 100% of stock-exchange-data/width
+                    inside partly stock-exchange-data
+                    aligned vertically all stock-exchange-data
+
+            @if ${isVisible("stock-exchange-text-2")}
+                stock-exchange-1:
+                    above stock-exchange-text-2 0px
+
+    = Identifiers =
+
+        # Verifying leis w.r.t lei data section
+        = LEI =
+            @if ${isVisible("lei-text-*")}
+                lei-*:
+                    width 100% of lei-data/width
+                    inside partly lei-data
+                    aligned vertically all lei-data
+
+            @if ${isVisible("lei-text-2")}
+                lei-1:
+                    above lei-text-2 0px
+
+        # Verifying stock symbols w.r.t stock symbol data section
+        = Stock Symbol =
+            @if ${isVisible("stock-symbol-text-*")}
+                stock-symbol-*:
+                    width 100% of stock-symbol-data/width
+                    inside partly stock-symbol-data
+                    aligned vertically all stock-symbol-data
+
+            @if ${isVisible("stock-symbol-text-2")}
+                stock-symbol-text-1:
+                    above stock-symbol-text-2 3px
+
+    # Verifying SWIFT/BICs w.r.t SWIFT/BIC data section
+    = SWIFT/BIC =
+        @if ${isVisible("swift-bic-text-*")}
+            swift-bic-text-*:
+                width 100% of swift-bic-data/width
+                inside partly swift-bic-data
+                aligned vertically all swift-bic-data
+
+        @if ${isVisible("swift-bic-text-2")}
+            swift-bic-text-1:
+                above swift-bic-text-2 0px
+
+    = Table Layout =
+
+        = Summary =
+
+            # Verifying head office header w.r.t head office data section
+            head-office-header:
+                height 100% of head-office-data/height
+                aligned horizontally all head-office-data
+                left-of head-office-data 0px
+
+            # Verifying registered office header w.r.t registered office data section
+            @if ${isVisible("registered-office-header")}
+                registered-office-header:
+                    height 100% of registered-office-data/height
+                    aligned horizontally all registered-office-data
+                    left-of registered-office-data 0px
+
+            # Verifying website header w.r.t website data section
+            website-header:
+                height 100% of website-data/height
+                aligned horizontally all website-data
+                left-of website-data 0px
+
+            # Verifying regulator header w.r.t regulator data section
+            regulator-header:
+                height 100% of regulator-data/height
+                aligned horizontally all regulator-data
+                left-of regulator-data 0px
+
+            # Verifying stock exchange header w.r.t stock exchange data section
+            stock-exchange-header:
+                height 100% of stock-exchange-data/height
+                aligned horizontally all stock-exchange-data
+                left-of stock-exchange-data 0px
+
+            # Verifying head office table  w.r.t regulator table
+            head-office-table:
+                aligned horizontally top regulator-table
+                left-of regulator-table 54px
+
+            # If present, verifying registered office table  w.r.t stock exchange table
+            @if ${isVisible("registered-office-table")}
+                registered-office-table:
+                    left-of stock-exchange-table 54px
+
+            # If registered office is not present, verifying website table  w.r.t stock exchange table
+            @else
+                website-table:
+                    left-of stock-exchange-table 54px
+
+            # If present, verifying head office table  w.r.t registered office table
+            @if ${isVisible("registered-office-table")}
+                head-office-table:
+                    aligned vertically all registered-office-table
+                    above registered-office-table 0px
+            # If registered office is not present, verifying head office table w.r.t website table
+            @else
+                head-office-table:
+                    aligned vertically all website-table
+                    above website-table 0px
+
+            # If present, verifying registered office table  w.r.t website table
+            @if ${isVisible("registered-office-table")}
+                registered-office-table:
+                    aligned vertically all website-table
+                    above website-table 0px
+
+            # Verifying regulator table w.r.t stock exchange table
+            regulator-table:
+                aligned vertically all stock-exchange-table
+                above stock-exchange-table 0px
+
+        = Identifiers =
+            # Verifying giin table w.r.t fatca status table
+            giin-table:
+                aligned vertically all fatca-status-table
+                above fatca-status-table 0px
+
+            # Verifying lei table w.r.t stock symbol table
+            lei-table:
+                aligned vertically all stock-symbol-table
+                above stock-symbol-table 0px
+
+            # Verifying giin table w.r.t giin table
+            giin-table:
+                aligned horizontally all lei-table
+                left-of lei-table 54px
+
+            # Verifying fatca status table w.r.t stock symbol table
+            fatca-status-table:
+                aligned horizontally all stock-symbol-table
+                left-of stock-symbol-table 54px
+
+    = Section Heading =
+
+        # Verifying summary heading w.r.t head office table
+        section-heading-1:
+            aligned vertically left head-office-table
+            above head-office-table 31px
+
+        # Verifying identifiers heading w.r.t giin table
+        # Verifying identifiers heading w.r.t website table
+        # Verifying identifiers heading w.r.t giin table
+        section-heading-2:
+            aligned vertically left giin-table
+            aligned vertically left website-table
+            above giin-table 30px
+            below website-table 50 to 52px
+
+        # Verifying identifiers heading w.r.t fatca status table
+        # Verifying identifiers heading w.r.t swift bic table
+        section-heading-3:
+            aligned vertically left fatca-status-table
+            aligned vertically left swift-bic-table
+            above swift-bic-table 30px
+            below fatca-status-table 50px
+
+    = CSS =
+        # Verifying summary, identifiers and swift/bic text
+        section-heading-*:
+            css font-family is "Arial,Helvetica,sans-serif"
+            css font-size is "19.2px"
+            css font-style is "normal"
+            css color is "rgba(153, 153, 153, 1)"
+
+        # Verifying table heading text
+        table-heading-*:
+            css font-family is "Arial,Helvetica,sans-serif"
+            css font-size is "16px"
+            css font-style is "normal"
+            css color is "rgba(102, 102, 102, 1)"
+
+        # Verifying table data text
+        table-data-*:
+            css font-family is "Arial,Helvetica,sans-serif"
+            css font-size is "12.8px"
+            css font-style is "normal"
+            css color is "rgba(102, 102, 102, 1)"
