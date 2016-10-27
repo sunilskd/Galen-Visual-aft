@@ -23,8 +23,8 @@ public class EntityDetails extends KYCTestBase {
     @Test(dataProvider = "fid")
     public void verifyEntityDetailsPage(String fid){
         openWebApp("");
-        login("gajendraubo");
-        openWebApp("https://internal-uboqa-web-1999720210.us-east-1.elb.amazonaws.com/kyc-webapp/#/legalEntity/" + fid + "/entityDetails");
+        login(readProperties.getUboUser());
+        openWebApp(readProperties.getUrl() + "/#/legalEntity/" + fid + "/entityDetails");
         checkPageLayout("specs/entitydetails.gspec");
     }
 

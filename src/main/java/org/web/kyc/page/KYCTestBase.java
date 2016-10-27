@@ -5,6 +5,9 @@ import com.galenframework.testng.GalenTestNgTestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import utils.ReadProperties;
 
 import java.io.IOException;
 
@@ -14,19 +17,36 @@ import static java.util.Arrays.asList;
  * Created by sahug on 9/14/2016.
  */
 public class KYCTestBase extends GalenTestNgTestBase {
-    String WEB_APP_URL = "https://internal-uboqa-web-1999720210.us-east-1.elb.amazonaws.com/kyc-webapp/#/login";
     private By user_login_input_box_id = By.xpath("//input[@id='login']");
     private By login_button_xpath = By.xpath("//button[1]");
+    public static ReadProperties readProperties = new ReadProperties();
+
+    /**
+     * Used in order to initialize a {@link WebDriver}
+     *
+     * @param args the arguments of current test
+     * @return
+     */
 
     public WebDriver createDriver(Object[] args) {
+    if (readProperties.getBrowser().equals("IE")){
+        System.setProperty("webdriver.ie.driver", getClass().getResource("/InternetExplorerDriver.exe").getPath());
+        return new InternetExplorerDriver();
+        }else if (readProperties.getBrowser().equals("Chrome")){
+         System.setProperty("webdriver.chrome.driver", getClass().getResource("/ChromeDriver.exe").getPath());
+        return new ChromeDriver();
+    }else if (readProperties.getBrowser().equals("Firefox")){
         return new FirefoxDriver();
+    }
+        return null;
     }
 
     public void openWebApp(String url){
         getDriver().manage().window().maximize();
         if(url.equals("")) {
-            load(WEB_APP_URL);
+            load(readProperties.getUrl() + "/#/login");
         }else load(url);
+        getDriver().manage().window().maximize();
     }
 
     public void dumpPage(String pageName, String specPath, String dumpDir){
@@ -57,4 +77,6 @@ public class KYCTestBase extends GalenTestNgTestBase {
         }
 
     }
+
+
 }

@@ -1,0 +1,115 @@
+@objects
+    owners-graph-header   id  header
+    tab-header  xpath   //*[@id='content-navigation']/ul
+    entity-details-tab   xpath   //*[@id='content-navigation']/ul/li[1]
+    owners-tab             xpath //*[@id='content-navigation']/ul/li[2]
+
+    owners-graph-sub-navigation-header  xpath   //*[@id='content-subnavigation']/ul
+    owners-graph-sub-navigation-owners-tab  xpath   //*[@id='content-subnavigation']/ul/li[2]
+    owners-graph-sub-navigation-grp-str-tab  xpath   //*[@id='content-subnavigation']/ul/li[1]
+    owners-graph-sub-navigation-subs-tab xpath   //*[@id='content-subnavigation']/ul/li[3]
+
+
+    owners_graph-module-heading  xpath   //*[@id='content-view']/h1
+
+    owners_graph-notification-message-large-graph    xpath   //*[@id='content-view']/div[2]/p
+
+    owners-graph-graph-control   xpath   //*[@id='content-view']/div[4]
+    owners-graph-graph-control-graph-zoom    xpath   //*[@id='content-view']/div[4]/div[1]
+    owners-graph-graph-control-percentage-filter xpath   //*[@id='content-view']/div[4]/div[2]
+    owners-graph-graph-control-direct-filter xpath   //*[@id='content-view']/div[4]/div[3]
+    owners-graph-graph-control-country-highlight xpath   //*[@id='content-view']/div[4]/div[4]
+    owners-graph-graph-control-ubo-filter    xpath   //*[@id='content-view']/div[4]/div[5]
+
+
+
+= Owners Graph =
+    @on desktop
+        owners-graph-header:
+            width 92 to 100% of screen/width
+            height ~ 2.75% of screen/height
+            aligned horizontally top screen
+            text contains "Ownership Module"
+
+        owners-tab:
+            width 3.95 to 4.05% of tab-header/width
+            height 88.4 to 92.3% of tab-header/height
+            inside partly tab-header  3px top,~ 110px left, 1716 to 1719px right
+
+# Comparing position of owners tab  with entity details tab
+= entity details =
+
+        owners-tab:
+            right-of entity-details-tab 4px
+
+        entity-details-tab:
+            left-of owners-tab 4px
+
+# Comparing position of tabs in sub navigation header
+= sub navigation =
+
+        owners-graph-sub-navigation-grp-str-tab:
+            aligned horizontally all owners-graph-sub-navigation-owners-tab
+            aligned horizontally all owners-graph-sub-navigation-subs-tab
+            left-of owners-graph-sub-navigation-owners-tab 4px
+            left-of owners-graph-sub-navigation-subs-tab 67 to 69px
+
+        owners-graph-sub-navigation-owners-tab:
+            aligned horizontally all owners-graph-sub-navigation-grp-str-tab
+            aligned horizontally all owners-graph-sub-navigation-subs-tab
+            left-of owners-graph-sub-navigation-subs-tab ~ 5px
+            right-of owners-graph-sub-navigation-grp-str-tab 4px
+
+        owners-graph-sub-navigation-subs-tab:
+            aligned horizontally all owners-graph-sub-navigation-grp-str-tab
+            aligned horizontally all owners-graph-sub-navigation-owners-tab
+            right-of owners-graph-sub-navigation-grp-str-tab 67 to 69px
+            right-of owners-graph-sub-navigation-owners-tab ~ 5px
+
+# Comparing position of tabs from sub navigation and main navigation
+
+        owners-graph-sub-navigation-owners-tab:
+            aligned vertically right owners-tab 3px
+            below owners-tab ~ 7px
+
+        owners-tab:
+            aligned vertically right owners-graph-sub-navigation-owners-tab 3px
+            above owners-graph-sub-navigation-owners-tab ~ 7px
+
+
+= Module Heading =
+# Validating module heading Ownership Graph
+         owners_graph-module-heading:
+                    text is "Ownership Graph"
+
+# Validating Module heading is not overlapping graph controls=
+        owners-graph-graph-control:
+            left-of owners_graph-module-heading 18px
+
+= Notification Message =
+# Validating notification message not overlapping with module heading and graph control=
+        owners_graph-notification-message-large-graph:
+            below owners_graph-module-heading 20px
+
+        owners_graph-notification-message-large-graph:
+            right-of owners-graph-graph-control 18px
+
+# Validating components in graph control are not over lapping
+= Graph Control =
+        owners-graph-graph-control-graph-zoom:
+            above owners-graph-graph-control-percentage-filter 10px
+
+        owners-graph-graph-control-graph-zoom:
+            inside owners-graph-graph-control  10px top, 20px left, 32px right, 268 to 271px bottom
+
+        owners-graph-graph-control-graph-zoom:
+            above owners-graph-graph-control-percentage-filter 10px
+
+        owners-graph-graph-control-percentage-filter:
+            above owners-graph-graph-control-direct-filter 10px
+
+        owners-graph-graph-control-direct-filter:
+            above owners-graph-graph-control-country-highlight 10px
+
+        owners-graph-graph-control-country-highlight:
+            above owners-graph-graph-control-ubo-filter ~ 10px

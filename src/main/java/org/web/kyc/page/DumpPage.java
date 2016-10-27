@@ -5,10 +5,18 @@ import org.testng.annotations.Test;
 public class DumpPage extends KYCTestBase {
 
     @Test
-    public void dumpPage(){
+    public void dumpEntityDetailsPage(){
         openWebApp("");
-        login("gajendraubo");
-        openWebApp("https://internal-uboqa-web-1999720210.us-east-1.elb.amazonaws.com/kyc-webapp/#/legalEntity/58285/entityDetails");
+        login(readProperties.getUboUser());
+        openWebApp(readProperties.getUrl() + "/#/legalEntity/58285/entityDetails");
         dumpPage("Entity Details","specs/entitydetails.gspec","entitydetails");
+    }
+
+    @Test
+    public void dumpOwnersGraphPage(){
+        openWebApp("");
+        login(readProperties.getUboUser());
+        openWebApp(readProperties.getUrl() + "/#/legalEntity/11262/ownership/owners/graph");
+        dumpPage("Owners Graph","specs/graphs.gspec","ownersgraph");
     }
 }
