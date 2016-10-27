@@ -6,64 +6,55 @@
     summary-menu   xpath   //*[@id='view-options']/ul/li[1]
     subs-header-lable   xpath   //*[@id='content-view']/h1
     subs-table-heading  xpath   //*[@id='subsidiaries']/thead/tr/th
-    filter-percent  xpath   //*[@id='content-filters']/div[1]/div/ul
-    filter-country  xpath   //*[@id='content-filters']/div[2]/div/ul
+    susb-entity-name-list-* xpath   //*[@id='subsidiaries']/tbody/tr[1]/td[1]
+    subs-country-of-operation-* xpath   //*[@id='subsidiaries']/tbody/tr[1]/td[2]
+    subs-percentage-*   xpath   //*[@id='subsidiaries']/tbody/tr[1]/td[3]
+    subs-date-*     xpath   //*[@id='subsidiaries']/tbody/tr[1]/td[4]
     footer  xpath   //*[@id='footer']
 
 = Subs Test =
     @on desktop
-        subsidiaries-list-*:
-            width 82.4 to 82.5% of screen/width
-            height 7.30 to 7.40% of screen/height
+
+        = subs list =
+            @forEach [subsidiaries-list-*] as subsidiary, next as nextItem
+                ${subsidiary}:
+                    aligned vertically all ${nextItem}
+                    above ${nextItem} 0px
 
         subs-menu:
-            width 53.7% of filter-section/width
-            height 4.50 to  4.54% of filter-section/height
-            right-of filter-section 27px
+            width 52.4 to 53.7% of filter-section/width
+            height 4.32 to  4.54% of filter-section/height
+            right-of filter-section 24 to 27px
             above filter-section 20px
+            width 5 to 8.33% of subs-header-lable/width
+            height 90.9 to 95.6% of subs-header-lable/height
+            above subs-header-lable 36px
 
         filter-section:
-            width 186% of subs-menu/width
-            height 2200 to  2206% of subs-menu/height
-            left-of subs-menu 27px
+            width 186 to 190% of subs-menu/width
+            height 2200 to  2310% of subs-menu/height
+            left-of subs-menu 24 to 27px
             below subs-menu 20px
-
-        filter-country:
-            width 100% of filter-percent/width
-            height 20.6% of filter-percent/height
-            aligned vertically all filter-percent
-            below filter-percent 51px
-
-        filter-percent:
-            width 100% of filter-country/width
-            height 484 to 486% of filter-country/height
-            aligned vertically all filter-country
-            above filter-country 51px
-
-        filter-section:
-            width 15.5% of subs-header-lable/width
+            width 9.5 to 15.5% of subs-header-lable/width
             height 2100 to 2105% of subs-header-lable/height
             left-of subs-header-lable 30px
 
+
         subs-header-lable:
-            width 644% of filter-section/width
-            height 4.75% of filter-section/height
+            width 644 to 1048% of filter-section/width
+            height 4.70 to 4.80% of filter-section/height
             right-of filter-section 30px
-
-        subs-header-lable:
-            width 1200% of subs-menu/width
-            height 103 to 106% of subs-menu/height
-            aligned vertically left subs-menu 3px
+            width 1200 to 2000% of subs-menu/width
+            height 103 to 110% of subs-menu/height
             below subs-menu 36px
-
-        subs-menu:
-            width 8.33% of subs-header-lable/width
-            height 95.3 to 95.6% of subs-header-lable/height
-            aligned vertically left subs-header-lable 3px
-            above subs-header-lable 36px
 
         footer:
             width 100% of viewport/width
-            height 5.58% of viewport/height
-            inside partly viewport  775px top, 20px bottom
+            height 4.82 to 5.58% of viewport/height
+            inside partly viewport  775 to 910px top, 20px bottom
             aligned vertically all viewport
+
+        = subs list =
+            @forEach [susb-entity-name-list-*] as subsidiarylist, index as i
+                ${subsidiarylist}:
+                    aligned horizontally all ${subs-country-of-operation-[i]}
