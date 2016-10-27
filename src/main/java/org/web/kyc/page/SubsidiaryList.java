@@ -1,3 +1,5 @@
+package org.web.kyc.page;
+
 import org.testng.annotations.Test;
 
 public class SubsidiaryList extends KYCTestBase {

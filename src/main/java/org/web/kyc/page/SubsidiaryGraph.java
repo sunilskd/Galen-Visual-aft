@@ -1,11 +1,12 @@
+package org.web.kyc.page;
+
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class SubsGraphs extends KYCTestBase {
+public class SubsidiaryGraph extends KYCTestBase {
 
     @Test
-    public void verifySusbsidiaryGraphPage(){
-
+    public void verifySubsGraphPage() {
         By graph_zoom_out_xpath = By.xpath(".//div/div/div/fieldset/button[2]");
         openWebApp("");
         login("sunilubo");
@@ -23,6 +24,6 @@ public class SubsGraphs extends KYCTestBase {
 
         //dumpPage("SubsidiariesGraph","specs/subsidiariesGraph.gspec","subsidiariesGraph");
         checkPageLayout("specs/subsidiariesGraph.gspec");
-    }
 
+    }
 }
