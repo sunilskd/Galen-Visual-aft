@@ -10,8 +10,8 @@ import java.util.List;
 /**
  * Created by shahc1 on 10/19/2016.
  */
-public class OwnersGraph extends KYCTestBase {
-    private int parentValue=0;
+public class GraphPage extends KYCTestBase {
+
     private By zoomOutButton = By.xpath(".//*[@name='zoom-out']");
     private By allNodesxpath = By.xpath("//*[local-name()='g'][contains(@class,'node')]");
     private String nodeOnLevelxpath = "//*[local-name()='g'][contains(@class,'node')][@parent='";
@@ -20,12 +20,36 @@ public class OwnersGraph extends KYCTestBase {
     public void verifyOwnersGraph() throws Exception {
         openWebApp("");
         login(readProperties.getUboUser());
+        openWebApp(readProperties.getUrl() + "/#/legalEntity/211/ownership/owners/graph");
+        clickOnZoomOutButton();
+        int parentValue=0;
+        determiningNumberOfLevels(allNodesxpath,parentValue);
+        determiningNodesOnEachLevel(nodeOnLevelxpath,parentValue);
+    }
+
+    @Test
+    public void verifySubsGraph() throws Exception {
+        openWebApp("");
+        login(readProperties.getUboUser());
+        openWebApp(readProperties.getUrl() + "/#/legalEntity/211/ownership/subsidiaries/graph");
+        clickOnZoomOutButton();
+        int parentValue=0;
+        determiningNumberOfLevels(allNodesxpath,parentValue);
+        determiningNodesOnEachLevel(nodeOnLevelxpath,parentValue);
+    }
+
+    @Test
+    public void verifyFullGraph() throws Exception {
+        openWebApp("");
+        login(readProperties.getUboUser());
         openWebApp(readProperties.getUrl() + "/#/legalEntity/211/ownership/groupStructure/graph");
         clickOnZoomOutButton();
-        determiningNumberOfLevels(allNodesxpath);
-        determiningNodesOnEachLevel(nodeOnLevelxpath);
-        checkPageLayout("specs/ownersGraph.gspec");
+        int parentValue=0;
+        determiningNumberOfLevels(allNodesxpath,parentValue);
+        determiningNodesOnEachLevel(nodeOnLevelxpath,parentValue);
     }
+
+
 
     public void clickOnZoomOutButton(){
         try{
@@ -37,7 +61,7 @@ public class OwnersGraph extends KYCTestBase {
         }
     }
 
-    public void determiningNumberOfLevels(By allNodesxpath){
+    public void determiningNumberOfLevels(By allNodesxpath,int parentValue){
         List<WebElement> allNodes = getDriver().findElements(allNodesxpath);
         for(WebElement node : allNodes){
             int parentLevel = Integer.parseInt(node.getAttribute("parent"));
@@ -48,7 +72,7 @@ public class OwnersGraph extends KYCTestBase {
         System.out.println("***************No. of Levels in graph are :"+parentValue+"**************");
     }
 
-    public void determiningNodesOnEachLevel(String nodeOnLevelxpath) throws Exception {
+    public void determiningNodesOnEachLevel(String nodeOnLevelxpath, int parentValue) throws Exception {
        /* So we need the below three lines are we need to create dynamic arraylist which can store node from each elements
        * In the for loop from line 61 to 64 we are storing elements from each level in the respective array
        */
