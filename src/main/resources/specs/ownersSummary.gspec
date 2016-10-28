@@ -16,8 +16,15 @@
 
 
     owners-summary-ubo-list-* xpath  .//*[@id='ubo']/tbody
+    owners-summary-ubo-name-* xpath .//*[@id='ubo']/tbody/tr[1]/td[1]
+    owners-summary-ubo-entity-* xpath   .//*[@id='ubo']/tbody/tr[1]/td[2]
+    owners-summary-ubo-percentage-* xpath   .//*[@id='ubo']/tbody/tr[1]/td[3]
+    owners-summary-ubo-date-* xpath .//*[@id='ubo']/tbody/tr[1]/td[4]
+    owners-summary-ubo-source-* xpath   .//*[@id='ubo']/tbody/tr[1]/td[5]
 
 
+    owners-summary-display-audit xpath  .//*[@id='toggle-audit-info']/span[1]
+    owners-summary-supporting-doc xpath .//*[@id='content-view']/div[2]/div[1]/div[1]/a
 
 
 = Owners Summary =
@@ -58,12 +65,18 @@
             ${directOwnerList}:
                 above ${nextDirectOwnerList} 0px
 
-# Validating distance between Direct Owner Name and Direct Owner Country
+# Validating distance between Direct Owner Name,Direct Owner Country, Direct Owner Percentage, Direct Owner Date and Direct Owner Source
 
-        @forEach [owners-summary-direct-owners-name-*] as directOwnerName, next as nextDirectOwnerName
-            @forEach [owners-summary-direct-owners-country-*] as directOwnerCountry, next as nextDirectOwnerCountry
-            ${directOwnerCountry}:
-                left-of ${nextDirectOwnerName}  1px
+        @forEach [owners-summary-direct-owners-name-*] as directOwnerName, index as i
+            ${directOwnerName}:
+                aligned horizontally all owners-summary-direct-owners-country-${i}
+                left-of owners-summary-direct-owners-percentage-${i} 157px
+                left-of owners-summary-direct-owners-country-${i} 0px
+                left-of owners-summary-direct-owners-date-${i} 297px
+                left-of owners-summary-direct-owners-source-${i} 480px
+
+
+
 
 
 
@@ -74,3 +87,24 @@
         @forEach [owners-summary-ubo-list-*] as directUBOList, next as nextUBOList
             ${directUBOList}:
                 above ${nextUBOList} 0px
+
+# Validating distance between UBO Name, UBO Entity, UBO Percentage, UBO Date, UBO Source
+        @forEach [owners-summary-ubo-name-*] as uboName, index as i
+            ${uboName}:
+                aligned horizontally all owners-summary-ubo-entity-${i}
+                left-of owners-summary-ubo-entity-${i} 0px
+                left-of owners-summary-ubo-percentage-${i} 262px
+                left-of owners-summary-ubo-date-${i} 406px
+                left-of owners-summary-ubo-source-${i} 574px
+
+= Audit Details =
+# Validating position of Audit link against
+        owners-summary-display-audit:
+            aligned horizontally all owners-summary-direct-owners 3px
+            right-of owners-summary-direct-owners 0px
+
+= Supporting Documents =
+# Validating position of supporting doc link against UBO heading
+       owners-summary-supporting-doc:
+           aligned horizontally all owners-summary-ubo
+           right-of owners-summary-ubo 0px
