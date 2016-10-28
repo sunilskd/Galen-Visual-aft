@@ -13,7 +13,7 @@ public class OwnersSummary extends KYCTestBase {
 
         openWebApp("");
         login(readProperties.getUboUser());
-        openWebApp(readProperties.getUrl()+"/#/legalEntity/LE-A/ownership/owners/summary");
+        openWebApp(readProperties.getUrl()+"/#/legalEntity/73125/ownership/owners/summary");
 
         checkPageLayout("specs/ownersSummary.gspec");
     }
