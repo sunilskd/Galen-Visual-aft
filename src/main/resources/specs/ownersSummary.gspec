@@ -1,30 +1,27 @@
 @objects
 
-    owners-summary-filters   id  content-filters
-    owners-summary-content-window    id  content-view
+    owners-summary-filters                      id  content-filters
+    owners-summary-content-window               id  content-view
 
-    owners-summary-ubo   xpath   //*[@id='content-view']/div[2]/div[1]/div/h1
-    owners-summary-direct-owners xpath   //*[@id='content-view']/div[1]/div[1]/h1
+    owners-summary-ubo                          xpath   //*[@id='content-view']/div[2]/div[1]/div/h1
+    owners-summary-direct-owners                xpath   //*[@id='content-view']/div[1]/div[1]/h1
 
-    owners-summary-direct-owners-list-* xpath    .//*[@id='direct-owners']/tbody
-    owners-summary-direct-owners-name-* xpath   .//*[@id='direct-owners']/tbody/tr[1]/td[1]
-    owners-summary-direct-owners-country-* xpath    .//*[@id='direct-owners']/tbody/tr[1]/td[2]
-    owners-summary-direct-owners-percentage-* xpath .//*[@id='direct-owners']/tbody/tr[1]/td[3]
-    owners-summary-direct-owners-date-* xpath   .//*[@id='direct-owners']/tbody/tr[1]/td[4]
-    owners-summary-direct-owners-source-* xpath .//*[@id='direct-owners']/tbody/tr[1]/td[5]
+    owners-summary-direct-owners-list-*         xpath    .//*[@id='direct-owners']/tbody
+    owners-summary-direct-owners-name-*         xpath   .//*[@id='direct-owners']/tbody/tr[1]/td[1]
+    owners-summary-direct-owners-country-*      xpath    .//*[@id='direct-owners']/tbody/tr[1]/td[2]
+    owners-summary-direct-owners-percentage-*   xpath .//*[@id='direct-owners']/tbody/tr[1]/td[3]
+    owners-summary-direct-owners-date-*         xpath   .//*[@id='direct-owners']/tbody/tr[1]/td[4]
+    owners-summary-direct-owners-source-*       xpath .//*[@id='direct-owners']/tbody/tr[1]/td[5]
 
+    owners-summary-ubo-list-*                   xpath  .//*[@id='ubo']/tbody
+    owners-summary-ubo-name-*                   xpath .//*[@id='ubo']/tbody/tr[1]/td[1]
+    owners-summary-ubo-entity-*                 xpath   .//*[@id='ubo']/tbody/tr[1]/td[2]
+    owners-summary-ubo-percentage-*             xpath   .//*[@id='ubo']/tbody/tr[1]/td[3]
+    owners-summary-ubo-date-*                   xpath .//*[@id='ubo']/tbody/tr[1]/td[4]
+    owners-summary-ubo-source-*                 xpath   .//*[@id='ubo']/tbody/tr[1]/td[5]
 
-
-    owners-summary-ubo-list-* xpath  .//*[@id='ubo']/tbody
-    owners-summary-ubo-name-* xpath .//*[@id='ubo']/tbody/tr[1]/td[1]
-    owners-summary-ubo-entity-* xpath   .//*[@id='ubo']/tbody/tr[1]/td[2]
-    owners-summary-ubo-percentage-* xpath   .//*[@id='ubo']/tbody/tr[1]/td[3]
-    owners-summary-ubo-date-* xpath .//*[@id='ubo']/tbody/tr[1]/td[4]
-    owners-summary-ubo-source-* xpath   .//*[@id='ubo']/tbody/tr[1]/td[5]
-
-
-    owners-summary-display-audit xpath  .//*[@id='toggle-audit-info']/span[1]
-    owners-summary-supporting-doc xpath .//*[@id='content-view']/div[2]/div[1]/div[1]/a
+    owners-summary-display-audit                xpath  .//*[@id='toggle-audit-info']/span[1]
+    owners-summary-supporting-doc               xpath .//*[@id='content-view']/div[2]/div[1]/div[1]/a
 
 
 = Owners Summary =
@@ -40,7 +37,6 @@
             aligned horizontally all owners-summary-filters
             right-of owners-summary-filters 0px
 
-
 = Direct Owners and UBO Heading =
 # Validating Direct owners and UBO Heading Displayed
         owners-summary-direct-owners:
@@ -55,8 +51,6 @@
 
         owners-summary-ubo:
             right-of owners-summary-filters 30px
-
-
 
 = Direct Owners list =
 # Validating if owners names are not overlapping each other
@@ -74,12 +68,6 @@
                 left-of owners-summary-direct-owners-country-${i} 0px
                 left-of owners-summary-direct-owners-date-${i} 297px
                 left-of owners-summary-direct-owners-source-${i} 480px
-
-
-
-
-
-
 
 = UBO Owners list =
 # Validating if UBO names are not overlapping each other

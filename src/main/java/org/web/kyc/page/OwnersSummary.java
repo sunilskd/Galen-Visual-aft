@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
  * Created by shahc1 on 10/14/2016.
  */
 public class OwnersSummary extends KYCTestBase {
-    
+
     @Test
     public void verifyOwnersSummaryPage(){
 
