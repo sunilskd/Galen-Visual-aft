@@ -64,13 +64,10 @@
                      inside partly head-office-data
                      aligned vertically all head-office-data
 
-            @if ${isVisible("head-office-address-text-2")}
-                 head-office-address-text-1:
-                     above head-office-address-text-2 0px
-
-            @if ${isVisible("head-office-address-text-3")}
-                 head-office-address-text-2:
-                     above head-office-address-text-3 0px
+            @if ${isVisible("head-office-address-text-*")}
+            @forEach [head-office-address-text-*] as item, next as nextItem
+                ${item}:
+                    above ${nextItem} 0px
 
         # Verifying registered office address lines w.r.t registered office data section
         = Registered Office =
@@ -80,13 +77,10 @@
                     inside partly registered-office-data
                     aligned vertically all registered-office-data
 
-            @if ${isVisible("registered-office-address-text-2")}
-                registered-office-address-text-1:
-                    above registered-office-address-text-2 0px
-
-            @if ${isVisible("registered-office-address-text-3")}
-                registered-office-address-text-2:
-                    above registered-office-address-text-3 0px
+            @if ${isVisible("registered-office-address-text-*")}
+            @forEach [registered-office-address-text-*] as item, next as nextItem
+                ${item}:
+                    above ${nextItem} 0px
 
         # Verifying website w.r.t website data section
         = Website =
@@ -102,9 +96,10 @@
                     inside partly regulator-data
                     aligned vertically all regulator-data
 
-            @if ${isVisible("regulator-text-2")}
-                regulator-text-1:
-                    above regulator-text-2 0px
+            @if ${isVisible("regulator-text-*")}
+            @forEach [regulator-text-*] as item, next as nextItem
+                ${item}:
+                    above ${nextItem} 0px
 
         # Verifying stock exchange w.r.t stock exchange data section
         = Stock Exchange =
@@ -128,9 +123,10 @@
                     inside partly lei-data
                     aligned vertically all lei-data
 
-            @if ${isVisible("lei-text-2")}
-                lei-1:
-                    above lei-text-2 0px
+            @if ${isVisible("lei-text-*")}
+            @forEach [lei-text-*] as item, next as nextItem
+                ${item}:
+                    above ${nextItem} 0px
 
         # Verifying stock symbols w.r.t stock symbol data section
         = Stock Symbol =
@@ -152,9 +148,10 @@
                 inside partly swift-bic-data
                 aligned vertically all swift-bic-data
 
-        @if ${isVisible("swift-bic-text-2")}
-            swift-bic-text-1:
-                above swift-bic-text-2 0px
+        @if ${isVisible("swift-bic-text-*")}
+        @forEach [swift-bic-text-*] as item, next as nextItem
+            ${item}:
+                above ${nextItem} 0px
 
     = Table Layout =
 

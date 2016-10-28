@@ -25,7 +25,7 @@
             width 52.4 to 53.7% of filter-section/width
             height 4.32 to  4.54% of filter-section/height
             right-of filter-section 24 to 27px
-            above filter-section 20px
+            above filter-section 20 to 21px
             width 5 to 8.33% of subs-header-label/width
             height 90.9 to 95.6% of subs-header-label/height
             above subs-header-label 36px
@@ -51,9 +51,16 @@
         footer:
             width 100% of viewport/width
             height 4.82 to 5.58% of viewport/height
-            inside partly viewport  775 to 910px top, 20px bottom
+            inside partly viewport  775 to 910px top, 20 to 21px bottom
             aligned vertically all viewport
 
         @forEach [subs-entity-name-list-*] as item, index as i
             ${item}:
                 aligned horizontally all subs-country-of-operation-${i}
+                aligned horizontally all subs-date-${i}
+                aligned horizontally all subs-percentage-${i}
+                aligned horizontally top subsidiaries-list-${i}
+                aligned vertically left subsidiaries-list-${i}
+                left-of subs-country-of-operation-${i} -1 to 0px
+                left-of subs-date-${i} 425 to 435px
+                left-of subs-percentage-${i} 245 to 252px
