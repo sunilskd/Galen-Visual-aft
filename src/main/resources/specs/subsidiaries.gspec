@@ -15,12 +15,14 @@
 = Subs Test =
     @on desktop
 
+        # Verifying subsidiaries list in each row of the section
         = subs list =
             @forEach [subsidiaries-list-*] as subsidiary, next as nextItem
                 ${subsidiary}:
                     aligned vertically all ${nextItem}
                     above ${nextItem} 0px
 
+        # Verifying subsidiaries menu w.r.t filter sections and subsidiary header
         subs-menu:
             width 52.4 to 53.7% of filter-section/width
             height 4.32 to  4.54% of filter-section/height
@@ -29,31 +31,18 @@
             width 5 to 8.33% of subs-header-label/width
             height 90.9 to 95.6% of subs-header-label/height
             above subs-header-label 36px
+            height 100% of owners-menu/height
+            aligned horizontally all owners-menu
+            right-of owners-menu 4 to 5px
 
-        filter-section:
-            width 186 to 190% of subs-menu/width
-            height 2200 to  2310% of subs-menu/height
-            left-of subs-menu 24 to 27px
-            below subs-menu 20px
-            width 9.5 to 15.5% of subs-header-label/width
-            height 2100 to 2105% of subs-header-label/height
-            left-of subs-header-label 30px
-
-
-        subs-header-label:
-            width 644 to 1048% of filter-section/width
-            height 4.70 to 4.80% of filter-section/height
-            right-of filter-section 30px
-            width 1200 to 2000% of subs-menu/width
-            height 103 to 110% of subs-menu/height
-            below subs-menu 36px
-
+        # Verifying footer section w.r.t subsidiary header
         footer:
             width 100% of viewport/width
             height 4.82 to 5.58% of viewport/height
             inside partly viewport  775 to 910px top, 20 to 21px bottom
             aligned vertically all viewport
 
+        # Verifying Subsidiary entity name w.r.t country, date, percentage
         @forEach [subs-entity-name-list-*] as item, index as i
             ${item}:
                 aligned horizontally all subs-country-of-operation-${i}
