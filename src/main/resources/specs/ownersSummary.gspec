@@ -1,91 +1,255 @@
 @objects
-    owners-summary-header   id  header
-    tab-header  xpath   //*[@id='content-navigation']/ul
-    entity-details-tab   xpath   //*[@id='content-navigation']/ul/li[1]
-    owners-tab             xpath //*[@id='content-navigation']/ul/li[2]
-    owners-summary-sub-navigation-header  xpath   //*[@id='content-subnavigation']/ul
-    owners-summary-sub-navigation-owners-tab  xpath   //*[@id='content-subnavigation']/ul/li[2]
-    owners-summary-sub-navigation-grpstr-tab  xpath   //*[@id='content-subnavigation']/ul/li[1]
-    owners-summary-sub-navigation-subs-tab xpath   //*[@id='content-subnavigation']/ul/li[3]
-    owners-summary-filters   id  content-filters
-    owners-summary-content-window    id  content-view
-    owners-summary-direct-owners xpath   //*[@id='content-view']/div[1]/div[1]/h1
-    owners-summary-ubo   xpath   //*[@id='content-view']/div[2]/div[1]/div/h1
+
+    owners-summary-filters                          id  content-filters
+    owners-summary-content-window                   id  content-view
+
+    owners-summary-ubo                              xpath   //*[@id='content-view']/div[2]/div[1]/div/h1
+    owners-summary-direct-owners                    xpath   //*[@id='content-view']/div[1]/div[1]/h1
+    owners-summary-direct-owners-container          xpath   //*[@id='content-view']/div[1]
+
+    owners-summary-direct-owners-list-*             xpath    .//*[@id='direct-owners']/tbody
+    owners-summary-direct-owners-name-*             xpath   .//*[@id='direct-owners']/tbody/tr[1]/td[1]
+    owners-summary-direct-owners-country-*          xpath    .//*[@id='direct-owners']/tbody/tr[1]/td[2]
+    owners-summary-direct-owners-percentage-*       xpath   .//*[@id='direct-owners']/tbody/tr[1]/td[3]
+    owners-summary-direct-owners-date-*             xpath   .//*[@id='direct-owners']/tbody/tr[1]/td[4]
+    owners-summary-direct-owners-source-*           xpath   .//*[@id='direct-owners']/tbody/tr[1]/td[5]
+    owners-summary-direct-owners-table-heading-*    xpath   .//*[@id='direct-owners']/thead/tr/th
+    owners-summary-direct-owners-legal-entity-*     xpath   .//*[@id='direct-owners']/tbody/tr/td[1]/a
+    owners-summary-direct-owners-personnel-*        xpath   .//*[@id='direct-owners']/tbody/tr/td[1]/p
+    owners-summary-direct-owners-status-bar-*       xpath   .//*[@id='direct-owners']/tbody/tr[2]/td
+
+    owners-summary-ubo-list-*                       xpath   .//*[@id='ubo']/tbody
+    owners-summary-ubo-name-*                       xpath   .//*[@id='ubo']/tbody/tr[1]/td[1]
+    owners-summary-ubo-entity-*                     xpath   .//*[@id='ubo']/tbody/tr[1]/td[2]
+    owners-summary-ubo-percentage-*                 xpath   .//*[@id='ubo']/tbody/tr[1]/td[3]
+    owners-summary-ubo-date-*                       xpath   .//*[@id='ubo']/tbody/tr[1]/td[4]
+    owners-summary-ubo-source-*                     xpath   .//*[@id='ubo']/tbody/tr[1]/td[5]
+    owners-summary-ubo-table-heading-*              xpath   .//*[@id='ubo']/thead/tr/th
+    owners-summary-ubo-status-bar-*                 xpath   .//*[@id='ubo']/tbody/tr[2]/td
+
+    owners-summary-display-audit                    xpath  .//*[@id='toggle-audit-info']/span[1]
+    owners-summary-supporting-doc                   xpath .//*[@id='content-view']/div[2]/div[1]/div[1]/a
+
 
 
 
 = Owners Summary =
-    @on desktop
-        owners-summary-header:
-            width 100% of screen/width
-            height ~ 2.75% of screen/height
-            inside partly screen 1059 to 1064px bottom
-            aligned horizontally top screen
-            aligned vertically all screen
-            text contains "Ownership Module"
-
-        owners-tab:
-            width 3.95 to 4.01% of tab-header/width
-            height 88.4 to 92.3% of tab-header/height
-            inside partly tab-header  3px top,~ 110px left,1733 to 1736px right
-
-=Comparing position with entity details tab=
-
-        owners-tab:
-            right-of entity-details-tab 4px
-
-        entity-details-tab:
-            left-of owners-tab 4px
-
-=Comparing position of tabs in sub navigation header=
-
-        owners-summary-sub-navigation-grpstr-tab:
-            aligned horizontally all owners-summary-sub-navigation-owners-tab
-            aligned horizontally all owners-summary-sub-navigation-subs-tab
-            left-of owners-summary-sub-navigation-owners-tab 4px
-            left-of owners-summary-sub-navigation-subs-tab 67 to 69px
-
-        owners-summary-sub-navigation-owners-tab:
-            aligned horizontally all owners-summary-sub-navigation-grpstr-tab
-            aligned horizontally all owners-summary-sub-navigation-subs-tab
-            left-of owners-summary-sub-navigation-subs-tab ~ 5px
-            right-of owners-summary-sub-navigation-grpstr-tab 4px
-
-        owners-summary-sub-navigation-subs-tab:
-            aligned horizontally all owners-summary-sub-navigation-grpstr-tab
-            aligned horizontally all owners-summary-sub-navigation-owners-tab
-            right-of owners-summary-sub-navigation-grpstr-tab 67 to 69px
-            right-of owners-summary-sub-navigation-owners-tab ~ 5px
-
-=Comparing position of tabs from sub navigation and main navigation=
-
-        owners-summary-sub-navigation-owners-tab:
-            aligned vertically right owners-tab 3px
-            below owners-tab ~ 7px
-
-        owners-tab:
-            aligned vertically right owners-summary-sub-navigation-owners-tab 3px
-            above owners-summary-sub-navigation-owners-tab ~ 7px
-
-=Comparing position of filter window and content window=
+= Filter Window =
+# Comparing position of filter window and content window
         owners-summary-filters:
-            aligned horizontally all owners-summary-content-window
-            left-of owners-summary-content-window 0px
+            left-of owners-summary-direct-owners-container 30px
 
-        owners-summary-content-window:
-            aligned horizontally all owners-summary-filters
-            right-of owners-summary-filters 0px
 
-=Validating Direct owners and UBO Heading Displayed=
+= Direct Owners list =
+# Validating if owners names are not overlapping each other
+
+        @forEach [owners-summary-direct-owners-list-*] as directOwnerList, next as nextDirectOwnerList
+            ${directOwnerList}:
+                above ${nextDirectOwnerList} 0px
+
+# Validating distance between Direct Owner Name,Direct Owner Country, Direct Owner Percentage, Direct Owner Date, Direct Owner Source and Direct Owner Percentage Bar
+
+        @forEach [owners-summary-direct-owners-name-*] as directOwnerName, index as i
+            ${directOwnerName}:
+                aligned horizontally all owners-summary-direct-owners-country-${i}
+                left-of owners-summary-direct-owners-country-${i} 0px
+
+        @forEach [owners-summary-direct-owners-country-*] as directOwnerCountry, index as i
+            ${directOwnerCountry}:
+                aligned horizontally all owners-summary-direct-owners-percentage-${i}
+                left-of owners-summary-direct-owners-percentage-${i} 0px
+
+        @forEach [owners-summary-direct-owners-percentage-*] as directOwnerPercentage, index as i
+            ${directOwnerPercentage}:
+                aligned horizontally all owners-summary-direct-owners-date-${i}
+                left-of owners-summary-direct-owners-date-${i} 0px
+
+        @forEach [owners-summary-direct-owners-date-*] as directOwnerDate, index as i
+            ${directOwnerDate}:
+                aligned horizontally all owners-summary-direct-owners-source-${i}
+                left-of owners-summary-direct-owners-source-${i} 0px
+
+        @forEach [owners-summary-direct-owners-status-bar-*] as directOwnersStatus, index as i
+            ${directOwnersStatus}:
+                 aligned horizontally bottom owners-summary-direct-owners-list-${i}
+                 aligned vertically all owners-summary-direct-owners-list-${i}
+
+= UBO Owners list =
+# Validating if UBO names are not overlapping each other
+
+        @forEach [owners-summary-ubo-list-*] as directUBOList, next as nextUBOList
+            ${directUBOList}:
+                above ${nextUBOList} 0px
+
+# Validating distance between UBO Name, UBO Entity, UBO Percentage, UBO Date, UBO Source and UBO Percentage Bar
+        @forEach [owners-summary-ubo-name-*] as uboName, index as i
+            ${uboName}:
+                aligned horizontally all owners-summary-ubo-entity-${i}
+                left-of owners-summary-ubo-entity-${i} 0px
+
+        @forEach [owners-summary-ubo-entity-*] as uboEntity, index as i
+            ${uboEntity}:
+                aligned horizontally all owners-summary-ubo-percentage-${i}
+                left-of owners-summary-ubo-percentage-${i} 0px
+
+        @forEach [owners-summary-ubo-percentage-*] as uboPercentage, index as i
+            ${uboPercentage}:
+                aligned horizontally all owners-summary-ubo-date-${i}
+                left-of owners-summary-ubo-date-${i} 0px
+
+        @forEach [owners-summary-ubo-date-*] as uboDate, index as i
+            ${uboDate}:
+                aligned horizontally all owners-summary-ubo-source-${i}
+                left-of owners-summary-ubo-source-${i} 0px
+
+        @forEach [owners-summary-ubo-status-bar-*] as uboStatusBar, index as i
+            ${uboStatusBar}:
+                aligned horizontally bottom owners-summary-ubo-list-${i}
+                aligned vertically all owners-summary-ubo-list-${i}
+
+= Audit Details =
+# Validating position of Audit link against
+        owners-summary-display-audit:
+            aligned horizontally all owners-summary-direct-owners 3px
+            right-of owners-summary-direct-owners 0px
+
+= Supporting Documents =
+# Validating position of supporting doc link against UBO heading
+       owners-summary-supporting-doc:
+           aligned horizontally all owners-summary-ubo
+           right-of owners-summary-ubo 0px
+
+
+
+= CSS =
         owners-summary-direct-owners:
-            text is "Direct Owners"
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "19.2px"
+            css font-style is "normal"
+            css color is "rgba(153, 153, 153, 1)"
 
-        owners-summary-ubo:
-            text is "Ultimate Beneficial Owners"
+        owners-summary-direct-owners-table-heading-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "9.6px"
+            css font-style is "normal"
 
-=Validating Direct Owners and UBO Heading not overlapping Fiter window=
-        owners-summary-direct-owners:
-            right-of owners-summary-filters 30px
+        @if ${isVisible("owners-summary-ubo-table-heading-*")}
+            owners-summary-ubo-table-heading-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "9.6px"
+                css font-style is "normal"
 
-        owners-summary-ubo:
-            right-of owners-summary-filters 30px
+        @if ${isVisible("owners-summary-direct-owners-personnel-*")}
+            owners-summary-direct-owners-personnel-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "12.8px"
+                css font-style is "normal"
+
+        @if ${isVisible("owners-summary-direct-owners-legal-entity-*")}
+            owners-summary-direct-owners-legal-entity-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "12.8px"
+                css font-style is "normal"
+                css color is "rgba(0,102,153,1)"
+
+        owners-summary-direct-owners-country-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "12.8px"
+            css font-style is "normal"
+
+        owners-summary-direct-owners-percentage-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "12.8px"
+            css font-style is "normal"
+
+        owners-summary-direct-owners-date-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "11.2px"
+            css font-style is "normal"
+            css color is "rgba(153, 153, 153, 1)"
+
+        owners-summary-direct-owners-source-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "11.2px"
+            css font-style is "italic"
+            css color is "rgba(153, 153, 153, 1)"
+
+        owners-summary-direct-owners-status-bar-*:
+            css color is "rgba(153, 153, 153, 1)"
+
+        owners-summary-ubo-name-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "12.8px"
+            css font-style is "normal"
+
+        owners-summary-ubo-entity-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "12.8px"
+            css font-style is "normal"
+
+        owners-summary-ubo-percentage-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "12.8px"
+            css font-style is "normal"
+
+        owners-summary-ubo-date-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "11.2px"
+            css font-style is "normal"
+            css color is "rgba(153, 153, 153, 1)"
+
+        owners-summary-ubo-source-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "11.2px"
+            css font-style is "italic"
+            css color is "rgba(153, 153, 153, 1)"
+
+        owners-summary-ubo-status-bar-*:
+            css color is "rgba(153, 153, 153, 1)"
+
+        owners-summary-display-audit:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "12.8px"
+            css font-style is "normal"
+            css color is "rgba(0, 102, 153, 1)"
+
+        owners-summary-supporting-doc:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "12.8px"
+            css font-style is "normal"
+            css color is "rgba(0, 102, 153, 1)"
+
+
+
