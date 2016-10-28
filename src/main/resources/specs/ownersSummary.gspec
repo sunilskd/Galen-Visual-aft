@@ -1,73 +1,30 @@
 @objects
-    owners-summary-header   id  header
-    tab-header  xpath   //*[@id='content-navigation']/ul
-    entity-details-tab   xpath   //*[@id='content-navigation']/ul/li[1]
-    owners-tab             xpath //*[@id='content-navigation']/ul/li[2]
-    owners-summary-sub-navigation-header  xpath   //*[@id='content-subnavigation']/ul
-    owners-summary-sub-navigation-owners-tab  xpath   //*[@id='content-subnavigation']/ul/li[2]
-    owners-summary-sub-navigation-grpstr-tab  xpath   //*[@id='content-subnavigation']/ul/li[1]
-    owners-summary-sub-navigation-subs-tab xpath   //*[@id='content-subnavigation']/ul/li[3]
+
     owners-summary-filters   id  content-filters
     owners-summary-content-window    id  content-view
-    owners-summary-direct-owners xpath   //*[@id='content-view']/div[1]/div[1]/h1
+
     owners-summary-ubo   xpath   //*[@id='content-view']/div[2]/div[1]/div/h1
+    owners-summary-direct-owners xpath   //*[@id='content-view']/div[1]/div[1]/h1
+
+    owners-summary-direct-owners-list-* xpath    .//*[@id='direct-owners']/tbody
+    owners-summary-direct-owners-name-* xpath   .//*[@id='direct-owners']/tbody/tr[1]/td[1]
+    owners-summary-direct-owners-country-* xpath    .//*[@id='direct-owners']/tbody/tr[1]/td[2]
+    owners-summary-direct-owners-percentage-* xpath .//*[@id='direct-owners']/tbody/tr[1]/td[3]
+    owners-summary-direct-owners-date-* xpath   .//*[@id='direct-owners']/tbody/tr[1]/td[4]
+    owners-summary-direct-owners-source-* xpath .//*[@id='direct-owners']/tbody/tr[1]/td[5]
+
+
+
+    owners-summary-ubo-list-* xpath  .//*[@id='ubo']/tbody
+
 
 
 
 = Owners Summary =
     @on desktop
-        owners-summary-header:
-            width 100% of screen/width
-            height ~ 2.75% of screen/height
-            inside partly screen 1059 to 1064px bottom
-            aligned horizontally top screen
-            aligned vertically all screen
-            text contains "Ownership Module"
 
-        owners-tab:
-            width 3.95 to 4.01% of tab-header/width
-            height 88.4 to 92.3% of tab-header/height
-            inside partly tab-header  3px top,~ 110px left,1733 to 1736px right
-
-=Comparing position with entity details tab=
-
-        owners-tab:
-            right-of entity-details-tab 4px
-
-        entity-details-tab:
-            left-of owners-tab 4px
-
-=Comparing position of tabs in sub navigation header=
-
-        owners-summary-sub-navigation-grpstr-tab:
-            aligned horizontally all owners-summary-sub-navigation-owners-tab
-            aligned horizontally all owners-summary-sub-navigation-subs-tab
-            left-of owners-summary-sub-navigation-owners-tab 4px
-            left-of owners-summary-sub-navigation-subs-tab 67 to 69px
-
-        owners-summary-sub-navigation-owners-tab:
-            aligned horizontally all owners-summary-sub-navigation-grpstr-tab
-            aligned horizontally all owners-summary-sub-navigation-subs-tab
-            left-of owners-summary-sub-navigation-subs-tab ~ 5px
-            right-of owners-summary-sub-navigation-grpstr-tab 4px
-
-        owners-summary-sub-navigation-subs-tab:
-            aligned horizontally all owners-summary-sub-navigation-grpstr-tab
-            aligned horizontally all owners-summary-sub-navigation-owners-tab
-            right-of owners-summary-sub-navigation-grpstr-tab 67 to 69px
-            right-of owners-summary-sub-navigation-owners-tab ~ 5px
-
-=Comparing position of tabs from sub navigation and main navigation=
-
-        owners-summary-sub-navigation-owners-tab:
-            aligned vertically right owners-tab 3px
-            below owners-tab ~ 7px
-
-        owners-tab:
-            aligned vertically right owners-summary-sub-navigation-owners-tab 3px
-            above owners-summary-sub-navigation-owners-tab ~ 7px
-
-=Comparing position of filter window and content window=
+= Filter Window =
+# Comparing position of filter window and content window
         owners-summary-filters:
             aligned horizontally all owners-summary-content-window
             left-of owners-summary-content-window 0px
@@ -76,16 +33,44 @@
             aligned horizontally all owners-summary-filters
             right-of owners-summary-filters 0px
 
-=Validating Direct owners and UBO Heading Displayed=
+
+= Direct Owners and UBO Heading =
+# Validating Direct owners and UBO Heading Displayed
         owners-summary-direct-owners:
             text is "Direct Owners"
 
         owners-summary-ubo:
             text is "Ultimate Beneficial Owners"
 
-=Validating Direct Owners and UBO Heading not overlapping Fiter window=
+# Validating Direct Owners and UBO Heading not overlapping Fiter window
         owners-summary-direct-owners:
             right-of owners-summary-filters 30px
 
         owners-summary-ubo:
             right-of owners-summary-filters 30px
+
+
+
+= Direct Owners list =
+# Validating if owners names are not overlapping each other
+
+        @forEach [owners-summary-direct-owners-list-*] as directOwnerList, next as nextDirectOwnerList
+            ${directOwnerList}:
+                above ${nextDirectOwnerList} 0px
+
+# Validating distance between Direct Owner Name and Direct Owner Country
+
+        @forEach [owners-summary-direct-owners-name-*] as directOwnerName, next as nextDirectOwnerName
+            @forEach [owners-summary-direct-owners-country-*] as directOwnerCountry, next as nextDirectOwnerCountry
+            ${directOwnerCountry}:
+                left-of ${nextDirectOwnerName}  1px
+
+
+
+
+= UBO Owners list =
+# Validating if UBO names are not overlapping each other
+
+        @forEach [owners-summary-ubo-list-*] as directUBOList, next as nextUBOList
+            ${directUBOList}:
+                above ${nextUBOList} 0px
