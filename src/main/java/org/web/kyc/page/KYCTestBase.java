@@ -21,6 +21,7 @@ public class KYCTestBase extends GalenTestNgTestBase {
     private By login_button_xpath = By.xpath("//button[1]");
     public static ReadProperties readProperties = new ReadProperties();
 
+
     public WebDriver createDriver(Object[] args) {
     if (readProperties.getBrowser().equals("ie")){
             System.setProperty("webdriver.ie.driver", getClass().getResource("/InternetExplorerDriver.exe").getPath());
