@@ -5,6 +5,7 @@
 
     owners-summary-ubo                              xpath   //*[@id='content-view']/div[2]/div[1]/div/h1
     owners-summary-direct-owners                    xpath   //*[@id='content-view']/div[1]/div[1]/h1
+    owners-summary-direct-owners-container          xpath   //*[@id='content-view']/div[1]
 
     owners-summary-direct-owners-list-*             xpath    .//*[@id='direct-owners']/tbody
     owners-summary-direct-owners-name-*             xpath   .//*[@id='direct-owners']/tbody/tr[1]/td[1]
@@ -15,6 +16,7 @@
     owners-summary-direct-owners-table-heading-*    xpath   .//*[@id='direct-owners']/thead/tr/th
     owners-summary-direct-owners-legal-entity-*     xpath   .//*[@id='direct-owners']/tbody/tr/td[1]/a
     owners-summary-direct-owners-personnel-*        xpath   .//*[@id='direct-owners']/tbody/tr/td[1]/p
+    owners-summary-direct-owners-status-bar-*       xpath   .//*[@id='direct-owners']/tbody/tr[2]/td
 
     owners-summary-ubo-list-*                       xpath   .//*[@id='ubo']/tbody
     owners-summary-ubo-name-*                       xpath   .//*[@id='ubo']/tbody/tr[1]/td[1]
@@ -23,9 +25,10 @@
     owners-summary-ubo-date-*                       xpath   .//*[@id='ubo']/tbody/tr[1]/td[4]
     owners-summary-ubo-source-*                     xpath   .//*[@id='ubo']/tbody/tr[1]/td[5]
     owners-summary-ubo-table-heading-*              xpath   .//*[@id='ubo']/thead/tr/th
+    owners-summary-ubo-status-bar-*                 xpath   .//*[@id='ubo']/tbody/tr[2]/td
 
-    owners-summary-display-audit                xpath  .//*[@id='toggle-audit-info']/span[1]
-    owners-summary-supporting-doc               xpath .//*[@id='content-view']/div[2]/div[1]/div[1]/a
+    owners-summary-display-audit                    xpath  .//*[@id='toggle-audit-info']/span[1]
+    owners-summary-supporting-doc                   xpath .//*[@id='content-view']/div[2]/div[1]/div[1]/a
 
 
 
@@ -34,27 +37,8 @@
 = Filter Window =
 # Comparing position of filter window and content window
         owners-summary-filters:
-            aligned horizontally all owners-summary-content-window
-            left-of owners-summary-content-window 0px
+            left-of owners-summary-direct-owners-container 30px
 
-        owners-summary-content-window:
-            aligned horizontally all owners-summary-filters
-            right-of owners-summary-filters 0px
-
-= Direct Owners and UBO Heading =
-# Validating Direct owners and UBO Heading Displayed
-        owners-summary-direct-owners:
-            text is "Direct Owners"
-
-        owners-summary-ubo:
-            text is "Ultimate Beneficial Owners"
-
-# Validating Direct Owners and UBO Heading not overlapping Fiter window
-        owners-summary-direct-owners:
-            right-of owners-summary-filters 30px
-
-        owners-summary-ubo:
-            right-of owners-summary-filters 30px
 
 = Direct Owners list =
 # Validating if owners names are not overlapping each other
@@ -63,7 +47,7 @@
             ${directOwnerList}:
                 above ${nextDirectOwnerList} 0px
 
-# Validating distance between Direct Owner Name,Direct Owner Country, Direct Owner Percentage, Direct Owner Date and Direct Owner Source
+# Validating distance between Direct Owner Name,Direct Owner Country, Direct Owner Percentage, Direct Owner Date, Direct Owner Source and Direct Owner Percentage Bar
 
         @forEach [owners-summary-direct-owners-name-*] as directOwnerName, index as i
             ${directOwnerName}:
@@ -85,6 +69,11 @@
                 aligned horizontally all owners-summary-direct-owners-source-${i}
                 left-of owners-summary-direct-owners-source-${i} 0px
 
+        @forEach [owners-summary-direct-owners-status-bar-*] as directOwnersStatus, index as i
+            ${directOwnersStatus}:
+                 aligned horizontally bottom owners-summary-direct-owners-list-${i}
+                 aligned vertically all owners-summary-direct-owners-list-${i}
+
 = UBO Owners list =
 # Validating if UBO names are not overlapping each other
 
@@ -92,7 +81,7 @@
             ${directUBOList}:
                 above ${nextUBOList} 0px
 
-# Validating distance between UBO Name, UBO Entity, UBO Percentage, UBO Date, UBO Source
+# Validating distance between UBO Name, UBO Entity, UBO Percentage, UBO Date, UBO Source and UBO Percentage Bar
         @forEach [owners-summary-ubo-name-*] as uboName, index as i
             ${uboName}:
                 aligned horizontally all owners-summary-ubo-entity-${i}
@@ -112,6 +101,11 @@
             ${uboDate}:
                 aligned horizontally all owners-summary-ubo-source-${i}
                 left-of owners-summary-ubo-source-${i} 0px
+
+        @forEach [owners-summary-ubo-status-bar-*] as uboStatusBar, index as i
+            ${uboStatusBar}:
+                aligned horizontally bottom owners-summary-ubo-list-${i}
+                aligned vertically all owners-summary-ubo-list-${i}
 
 = Audit Details =
 # Validating position of Audit link against
@@ -198,6 +192,9 @@
             css font-style is "italic"
             css color is "rgba(153, 153, 153, 1)"
 
+        owners-summary-direct-owners-status-bar-*:
+            css color is "rgba(153, 153, 153, 1)"
+
         owners-summary-ubo-name-*:
             css font-family matches ".*rial.*"
             css font-family matches ".*elvetica.*"
@@ -235,6 +232,9 @@
             css font-style is "italic"
             css color is "rgba(153, 153, 153, 1)"
 
+        owners-summary-ubo-status-bar-*:
+            css color is "rgba(153, 153, 153, 1)"
+
         owners-summary-display-audit:
             css font-family matches ".*rial.*"
             css font-family matches ".*elvetica.*"
@@ -243,8 +243,6 @@
             css font-style is "normal"
             css color is "rgba(0, 102, 153, 1)"
 
-
-
         owners-summary-supporting-doc:
             css font-family matches ".*rial.*"
             css font-family matches ".*elvetica.*"
@@ -252,5 +250,6 @@
             css font-size is "12.8px"
             css font-style is "normal"
             css color is "rgba(0, 102, 153, 1)"
+
 
 
