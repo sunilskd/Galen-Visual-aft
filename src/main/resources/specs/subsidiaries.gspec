@@ -10,10 +10,11 @@
     subs-country-of-operation-*     xpath   //*[@id='subsidiaries']/tbody/tr[1]/td[2]
     subs-percentage-*               xpath   //*[@id='subsidiaries']/tbody/tr[1]/td[3]
     subs-date-*                     xpath   //*[@id='subsidiaries']/tbody/tr[1]/td[4]
-    footer                          xpath   //*[@id='footer']
+    subs-table                      xpath   //*[@id='subsidiaries']
+    subs-entity-title-*             xpath   //*[@id='subsidiaries']/tbody/tr/td[1]/a
+    subs-percentagebar-*           xpath   //*[@id='subsidiaries']/tbody/tr[2]/td/div/div
 
 = Subs Test =
-    @on desktop
 
         # Verifying subsidiaries list in each row of the section
         = subs list =
@@ -22,25 +23,19 @@
                     aligned vertically all ${nextItem}
                     above ${nextItem} 0px
 
-        # Verifying subsidiaries menu w.r.t filter sections and subsidiary header
-        subs-menu:
-            width 52.4 to 53.7% of filter-section/width
-            height 4.32 to  4.54% of filter-section/height
-            right-of filter-section 24 to 27px
-            above filter-section 20 to 21px
-            width 5 to 8.33% of subs-header-label/width
-            height 90.9 to 95.6% of subs-header-label/height
-            above subs-header-label 36px
-            height 100% of owners-menu/height
-            aligned horizontally all owners-menu
-            right-of owners-menu 4 to 5px
+        # Verifying percentage bar w.r.t subsidiaries row
+        = subs list =
+            @forEach [subsidiaries-list-*] as item, index as i
+                ${item}:
+                    width 100 to 101% of subs-percentagebar-${i}/width
+                    height 1550 to 1575% of subs-percentagebar-${i}/height
+                    centered horizontally on subs-percentagebar-${i}
 
-        # Verifying footer section w.r.t subsidiary header
-        footer:
-            width 100% of viewport/width
-            height 4.82 to 5.58% of viewport/height
-            inside partly viewport  775 to 910px top, 20 to 21px bottom
-            aligned vertically all viewport
+        # Verifying subsidiary table w.r.t filter section
+        subs-table:
+            width 1045 to 1055% of filter-section/width
+            height 69.0 to 70.5% of filter-section/height
+            right-of filter-section 30px
 
         # Verifying Subsidiary entity name w.r.t country, date, percentage
         @forEach [subs-entity-name-list-*] as item, index as i
@@ -53,3 +48,67 @@
                 left-of subs-country-of-operation-${i} -1 to 0px
                 left-of subs-date-${i} 425 to 435px
                 left-of subs-percentage-${i} 245 to 252px
+
+= CSS =
+        # Verifying subsidiaries section header text
+        subs-header-label:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "19.2px"
+            css font-style is "normal"
+            css color is "rgba(153, 153, 153, 1)"
+
+        # Verifying subsidiaries table heading text
+        subs-table-heading:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "9.6px"
+            css font-style is "normal"
+            css color is "rgba(102, 102, 102, 1)"
+
+        # Verifying subsidiary title text
+        subs-entity-title-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "12.8px"
+            css font-style is "normal"
+            css color is "rgba(0, 102, 153, 1)"
+
+        # Verifying subsidiary country text
+        subs-country-of-operation-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "12.8px"
+            css font-style is "normal"
+            css color is "rgba(102, 102, 102, 1)"
+
+        # Verifying subsidiary percentage text
+        subs-percentage-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "12.8px"
+            css font-style is "normal"
+            css color is "rgba(102, 102, 102, 1)"
+
+        # Verifying subsidiary date text
+        subs-date-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "11.2px"
+            css font-style is "normal"
+            css color is "rgba(153, 153, 153, 1)"
+
+        # Verifying subsidiary percentage bar
+        subs-percentagebar-*:
+            css font-family matches ".*rial.*"
+            css font-family matches ".*elvetica.*"
+            css font-family matches ".*ans-serif.*"
+            css font-size is "11.2px"
+            css font-style is "normal"
+            css color is "rgba(153, 153, 153, 1)"
