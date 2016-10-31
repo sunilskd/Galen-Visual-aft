@@ -22,8 +22,8 @@ public class SubsidiaryGraph extends KYCTestBase {
         }
 
 
-        //dumpPage("SubsidiariesGraph","specs/subsidiariesGraph.gspec","subsidiariesGraph");
-        checkPageLayout("specs/subsidiariesGraph.gspec");
+        //dumpPage("SubsidiariesGraph","specs/subsidiariesgraph.gspec","subsidiariesGraph");
+        checkPageLayout("specs/subsidiariesgraph.gspec");
 
     }
 }

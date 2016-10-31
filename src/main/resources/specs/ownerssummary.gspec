@@ -1,0 +1,404 @@
+@objects
+
+    filter-section                          id  content-filters
+    content-window                          id  content-view
+
+    direct-owners-heading                   xpath   //*[@id='content-view']/div[1]/div[1]/h1
+    direct-owners-container                 xpath   //*[@id='content-view']/div[1]
+    direct-owners-list-*                    xpath   //*[@id='direct-owners']/tbody
+    direct-owners-name-*                    xpath   //*[@id='direct-owners']/tbody/tr[1]/td[1]
+    direct-owners-country-*                 xpath   //*[@id='direct-owners']/tbody/tr[1]/td[2]
+    direct-owners-percentage-*              xpath   //*[@id='direct-owners']/tbody/tr[1]/td[3]
+    direct-owners-date-*                    xpath   //*[@id='direct-owners']/tbody/tr[1]/td[4]
+    direct-owners-source-*                  xpath   //*[@id='direct-owners']/tbody/tr[1]/td[5]
+    direct-owners-table-heading-*           xpath   //*[@id='direct-owners']/thead/tr/th
+    direct-owners-legal-entity-*            xpath   //*[@id='direct-owners']/tbody/tr/td[1]/a
+    direct-owners-non-entity-*              xpath   //*[@id='direct-owners']/tbody/tr/td[1]/p
+    direct-owners-percent-bar-*             xpath   //*[@id='direct-owners']/tbody/tr[2]/td
+
+    ubo-container                           xpath   //*[@id='content-view']/div[2]
+    ubo-heading                             xpath   //*[@id='content-view']/div[2]/div[1]/div/h1
+    ubo-list-*                              xpath   //*[@id='ubo']/tbody
+    ubo-name-*                              xpath   //*[@id='ubo']/tbody/tr[1]/td[1]
+    ubo-entity-*                            xpath   //*[@id='ubo']/tbody/tr[1]/td[2]
+    ubo-percentage-*                        xpath   //*[@id='ubo']/tbody/tr[1]/td[3]
+    ubo-date-*                              xpath   //*[@id='ubo']/tbody/tr[1]/td[4]
+    ubo-source-*                            xpath   //*[@id='ubo']/tbody/tr[1]/td[5]
+    ubo-table-heading-*                     xpath   //*[@id='ubo']/thead/tr/th
+    ubo-percent-bar-*                       xpath   //*[@id='ubo']/tbody/tr[2]/td
+
+    display-audit                           xpath   //*[@id='toggle-audit-info']/span[1]
+    supporting-doc                          xpath   //*[@id='content-view']/div[2]/div[1]/div[1]/a
+
+= Owners Summary =
+
+    = Filter Window =
+
+        # Verifying filter window w.r.t content window
+        filter-section:
+            left-of direct-owners-container 30px
+
+    = Direct Owners Table Heading =
+
+        # Verifying table heading name w.r.t table heading country, %, date and source
+        direct-owners-table-heading-1:
+            aligned horizontally all direct-owners-table-heading-2
+            aligned horizontally all direct-owners-table-heading-3
+            aligned horizontally all direct-owners-table-heading-4
+            aligned horizontally all direct-owners-table-heading-5
+            left-of direct-owners-table-heading-2 0px
+
+        # Verifying table heading country w.r.t table heading name, %, date and source
+        direct-owners-table-heading-2:
+            aligned horizontally all direct-owners-table-heading-1
+            aligned horizontally all direct-owners-table-heading-3
+            aligned horizontally all direct-owners-table-heading-4
+            aligned horizontally all direct-owners-table-heading-5
+            right-of direct-owners-table-heading-1 0px
+
+        # Verifying table heading percentage w.r.t table heading name, country, date and source
+        direct-owners-table-heading-3:
+            aligned horizontally all direct-owners-table-heading-1
+            aligned horizontally all direct-owners-table-heading-2
+            aligned horizontally all direct-owners-table-heading-4
+            aligned horizontally all direct-owners-table-heading-5
+            left-of direct-owners-table-heading-4 0px
+
+        # Verifying table heading date w.r.t table heading name, country, percentage and source
+        direct-owners-table-heading-4:
+            aligned horizontally all direct-owners-table-heading-1
+            aligned horizontally all direct-owners-table-heading-2
+            aligned horizontally all direct-owners-table-heading-3
+            aligned horizontally all direct-owners-table-heading-5
+            left-of direct-owners-table-heading-5 0px
+            right-of direct-owners-table-heading-3 0px
+
+        # Verifying table heading source w.r.t table heading name, country, percentage and date
+        direct-owners-table-heading-5:
+            aligned horizontally all direct-owners-table-heading-1
+            aligned horizontally all direct-owners-table-heading-2
+            aligned horizontally all direct-owners-table-heading-3
+            aligned horizontally all direct-owners-table-heading-4
+            right-of direct-owners-table-heading-4 0px
+
+        # Verifying direct owners table heading w.r.t direct owners heading and direct owners list
+        direct-owners-table-heading-*:
+            above direct-owners-list-1 0px
+            below direct-owners-heading 21px
+
+    = Direct Owners list =
+
+        # Verifying direct owners list in each row of the section
+            @forEach [direct-owners-list-*] as directOwnerList, next as nextDirectOwnerList
+                ${directOwnerList}:
+                    above ${nextDirectOwnerList} 0px
+
+        # Verifying direct owners entity name w.r.t country
+            @forEach [direct-owners-name-*] as directOwnerName, index as i
+                ${directOwnerName}:
+                    aligned horizontally all direct-owners-country-${i}
+                    left-of direct-owners-country-${i} 0px
+
+        # Verifying direct owners country w.r.t percentage
+            @forEach [direct-owners-country-*] as directOwnerCountry, index as i
+                ${directOwnerCountry}:
+                    aligned horizontally all direct-owners-percentage-${i}
+                    left-of direct-owners-percentage-${i} 0px
+
+        # Verifying direct owners percentage w.r.t date
+            @if ${isVisible("direct-owners-date-*")}
+                @forEach [direct-owners-percentage-*] as directOwnerPercentage, index as i
+                    ${directOwnerPercentage}:
+                        aligned horizontally all direct-owners-date-${i}
+                        left-of direct-owners-date-${i} 0px
+
+        # Verifying direct owners date w.r.t source
+            @forEach [direct-owners-date-*] as directOwnerDate, index as i
+                ${directOwnerDate}:
+                    aligned horizontally all direct-owners-source-${i}
+                    left-of direct-owners-source-${i} 0px
+
+        # Verifying direct owners percentage bar w.r.t list
+            @forEach [direct-owners-percent-bar-*] as directOwnersStatus, index as i
+                ${directOwnersStatus}:
+                     aligned horizontally bottom direct-owners-list-${i}
+                     aligned vertically all direct-owners-list-${i}
+
+    = Direct Owners Table Heading =
+
+        # Verifying table heading name w.r.t table heading entity, %, date and source
+        ubo-table-heading-1:
+            aligned horizontally all ubo-table-heading-2
+            aligned horizontally all ubo-table-heading-3
+            aligned horizontally all ubo-table-heading-4
+            aligned horizontally all ubo-table-heading-5
+            left-of ubo-table-heading-2 -1 to 0px
+
+        # Verifying table heading entity w.r.t table heading name , %, date and source
+        ubo-table-heading-2:
+            aligned horizontally all ubo-table-heading-1
+            aligned horizontally all ubo-table-heading-3
+            aligned horizontally all ubo-table-heading-4
+            aligned horizontally all ubo-table-heading-5
+            right-of ubo-table-heading-1 -1 to 0px
+
+        # Verifying table heading percentage w.r.t table heading name, entity, date and source
+        ubo-table-heading-3:
+            aligned horizontally all ubo-table-heading-1
+            aligned horizontally all ubo-table-heading-2
+            aligned horizontally all ubo-table-heading-4
+            aligned horizontally all ubo-table-heading-5
+            left-of ubo-table-heading-4 0 to 1px
+
+        # Verifying table heading date w.r.t table heading name, entity, % and source
+        ubo-table-heading-4:
+            aligned horizontally all ubo-table-heading-1
+            aligned horizontally all ubo-table-heading-2
+            aligned horizontally all ubo-table-heading-3
+            aligned horizontally all ubo-table-heading-5
+            left-of ubo-table-heading-5 0px
+            right-of ubo-table-heading-3 0 to 1px
+
+        # Verifying table heading source w.r.t table heading name, entity, % and date
+        ubo-table-heading-5:
+            aligned horizontally all ubo-table-heading-1
+            aligned horizontally all ubo-table-heading-2
+            aligned horizontally all ubo-table-heading-3
+            aligned horizontally all ubo-table-heading-4
+            right-of ubo-table-heading-4 0px
+
+        # Verifying ubo table heading w.r.t ubo heading and ubo list
+        ubo-table-heading-*:
+            above ubo-list-1 -1 to 0px
+            below ubo-heading 21px
+
+    = UBO Owners list =
+
+        # Verifying ubo list in each row of the section
+            @forEach [ubo-list-*] as directUBOList, next as nextUBOList
+                ${directUBOList}:
+                    above ${nextUBOList} 0px
+
+        # Verifying ubo name w.r.t ubo list
+            @forEach [ubo-name-*] as uboName, index as i
+                ${uboName}:
+                    aligned horizontally all ubo-entity-${i}
+                    left-of ubo-entity-${i} -1 to 0px
+
+        # Verifying ubo name w.r.t percentage
+            @forEach [ubo-entity-*] as uboEntity, index as i
+                ${uboEntity}:
+                    aligned horizontally all ubo-percentage-${i}
+                    left-of ubo-percentage-${i} 0px
+
+        # Verifying ubo percentage w.r.t date
+            @forEach [ubo-percentage-*] as uboPercentage, index as i
+                ${uboPercentage}:
+                    aligned horizontally all ubo-date-${i}
+                    left-of ubo-date-${i} 0px
+
+        # Verifying ubo date w.r.t source
+            @forEach [ubo-date-*] as uboDate, index as i
+                ${uboDate}:
+                    aligned horizontally all ubo-source-${i}
+                    left-of ubo-source-${i} 0px
+
+        # Verifying ubo percentage w.r.t list
+            @forEach [ubo-percent-bar-*] as uboPercentageBar, index as i
+                ${uboPercentageBar}:
+                    aligned horizontally bottom ubo-list-${i} offset 1px
+                    aligned vertically all ubo-list-${i}
+
+    = Audit Details =
+
+        # Verifying audit link w.r.t direct owners section
+            display-audit:
+                aligned horizontally all direct-owners-heading 3px
+                right-of direct-owners-heading 0px
+
+    = Supporting Documents =
+
+        # Verifying supporting document link w.r.t ubo section
+           supporting-doc:
+               aligned horizontally all ubo-heading
+               right-of ubo-heading 0px
+
+    = Direct Owners and UBO Owners table =
+        # Verifying ubo owners container w.r.t direct owners container
+        ubo-container:
+            aligned vertically all direct-owners-container
+            below direct-owners-container 50px
+
+    = CSS =
+
+        = Direct Owners Section =
+
+            # Verifying direct owners section header text
+            direct-owners-heading:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "19.2px"
+                css font-style is "normal"
+                css color is "rgba(153, 153, 153, 1)"
+
+            # Verifying direct owners table heading text
+            direct-owners-table-heading-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "9.6px"
+                css font-style is "normal"
+                css color is "rgba(102, 102, 102, 1)"
+
+           # Verifying direct owners non entity text
+            @if ${isVisible("direct-owners-non-entity-*")}
+                direct-owners-non-entity-*:
+                    css font-family matches ".*rial.*"
+                    css font-family matches ".*elvetica.*"
+                    css font-family matches ".*ans-serif.*"
+                    css font-size is "12.8px"
+                    css font-style is "normal"
+                    css color is "rgba(102, 102, 102, 1)"
+
+            # Verifying direct owners legal entity text
+            @if ${isVisible("direct-owners-legal-entity-*")}
+                direct-owners-legal-entity-*:
+                    css font-family matches ".*rial.*"
+                    css font-family matches ".*elvetica.*"
+                    css font-family matches ".*ans-serif.*"
+                    css font-size is "12.8px"
+                    css font-style is "normal"
+                    css color is "rgba(0, 102, 153, 1)"
+
+            # Verifying direct owners country text
+            direct-owners-country-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "12.8px"
+                css font-style is "normal"
+                css color is "rgba(102, 102, 102, 1)"
+
+            # Verifying direct owners percentage text
+            direct-owners-percentage-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "12.8px"
+                css font-style is "normal"
+                css color is "rgba(102, 102, 102, 1)"
+
+            # Verifying direct owners date text
+            direct-owners-date-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "11.2px"
+                css font-style is "normal"
+                css color is "rgba(153, 153, 153, 1)"
+
+            # Verifying direct owners source text
+            direct-owners-source-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "11.2px"
+                css font-style is "italic"
+                css color is "rgba(153, 153, 153, 1)"
+
+            # Verifying direct owners percent bar css
+            direct-owners-percent-bar-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "11.2px"
+                css font-style is "italic"
+                css color is "rgba(153, 153, 153, 1)"
+
+        = UBO Section =
+
+            # Verifying ubo table heading
+            @if ${isVisible("ubo-table-heading-*")}
+                ubo-table-heading-*:
+                    css font-family matches ".*rial.*"
+                    css font-family matches ".*elvetica.*"
+                    css font-family matches ".*ans-serif.*"
+                    css font-size is "9.6px"
+                    css font-style is "normal"
+                    css color is "rgba(102, 102, 102, 1)"
+
+            # Verifying ubo name text
+            ubo-name-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "12.8px"
+                css font-style is "normal"
+                css color is "rgba(102, 102, 102, 1)"
+
+            # Verifying ubo entity text
+            ubo-entity-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "12.8px"
+                css font-style is "normal"
+                css color is "rgba(102, 102, 102, 1)"
+
+            # Verifying ubo percentage text
+            ubo-percentage-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "12.8px"
+                css font-style is "normal"
+                css color is "rgba(102, 102, 102, 1)"
+
+            # Verifying ubo date text
+            ubo-date-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "11.2px"
+                css font-style is "normal"
+                css color is "rgba(153, 153, 153, 1)"
+
+            # Verifying ubo source text
+            ubo-source-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "11.2px"
+                css font-style is "italic"
+                css color is "rgba(153, 153, 153, 1)"
+
+            # Verifying ubo percent bar css
+            ubo-percent-bar-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "11.2px"
+                css font-style is "italic"
+                css color is "rgba(153, 153, 153, 1)"
+
+        = Audit Link =
+
+            # Verifying audit link css
+            display-audit:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "12.8px"
+                css font-style is "normal"
+                css color is "rgba(0, 102, 153, 1)"
+
+        = Supporting Doc Link =
+            # Verifying supporting doc link css
+            supporting-doc:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "12.8px"
+                css font-style is "normal"
+                css color is "rgba(0, 102, 153, 1)"

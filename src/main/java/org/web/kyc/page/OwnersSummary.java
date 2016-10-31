@@ -15,6 +15,6 @@ public class OwnersSummary extends KYCTestBase {
         login(readProperties.getUboUser());
         openWebApp(readProperties.getUrl()+"/#/legalEntity/73125/ownership/owners/summary");
 
-        checkPageLayout("specs/ownersSummary.gspec");
+        checkPageLayout("specs/ownerssummary.gspec");
     }
 }
