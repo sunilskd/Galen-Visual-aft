@@ -13,8 +13,8 @@ public class SubsidiarySummary extends KYCTestBase {
         openWebApp(subsSummary);
         getDriver().manage().window().maximize();
 
-        //dumpPage("Subsidiaries","specs/subsidiariessummary.gspec","subsidiaries");
-      checkPageLayout("specs/subsidiariessummary.gspec");
+        //dumpPage("Subsidiaries","specs/subsidiariesSummary.gspec","subsidiaries");
+      checkPageLayout("specs/subsidiariesSummary.gspec");
     }
 
 }
