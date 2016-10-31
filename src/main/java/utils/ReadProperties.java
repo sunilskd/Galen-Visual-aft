@@ -20,7 +20,6 @@ public class ReadProperties {
         setKycUser(getProjectProperties("test.properties","kyc.kyc.user.login.id"));
     }
 
-
     public String getProjectProperties(String propertyFile, String property) {
         Properties properties = new Properties();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertyFile);
