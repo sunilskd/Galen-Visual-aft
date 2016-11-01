@@ -18,21 +18,21 @@
 
         = Subsidiaries Table =
         # Verifying subsidiary table w.r.t filter section
-            subs-table:
-                right-of filter-section 30px
+        subs-table:
+            right-of filter-section 30px
 
         = Subsidiaries List =
         # Verifying subsidiaries list in each row of the section
-            @forEach [subsidiaries-list-*] as subsidiary, next as nextItem
-                ${subsidiary}:
-                    aligned vertically all ${nextItem}
-                    above ${nextItem} 0px
+        @forEach [subsidiaries-list-*] as subsidiary, next as nextItem
+            ${subsidiary}:
+                aligned vertically all ${nextItem}
+                above ${nextItem} 0px
 
         = Percentage Bar =
         # Verifying percentage bar w.r.t subsidiaries row
-            @forEach [subs-percentageBar-*] as item, index as i
-                ${item}:
-                    inside subsidiaries-list-${i} 40 to 50px top, 0 to 8px bottom
+        @forEach [subs-percentageBar-*] as item, index as i
+            ${item}:
+                inside subsidiaries-list-${i} 40 to 50px top, 0 to 8px bottom
 
         = Subsidiaries Table Heading =
             # Verifying table heading w.r.t subsidiaries list header and subsidiaries list

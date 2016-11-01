@@ -34,9 +34,9 @@
 
     = Filter Window =
 
-        # Verifying filter window w.r.t content window
-        filter-section:
-            left-of direct-owners-container 30px
+        # Verifying direct owner w.r.t filter section
+        direct-owners-container:
+            right-of filter-section 30px
 
     = Direct Owners Table Heading =
 
