@@ -1,0 +1,40 @@
+@script rules.js
+
+@objects
+    group-structure-header           xpath  //*[@id='content-view']/div/h1
+    group-structure                  xpath  //*[@id='group-structure']/ul
+    group-structure-tree-section-*   xpath  //*[@id='group-structure'] //ul
+    group-structure-section          xpath  //*[@id='group-structure'] /ul
+    country-highlight-section        xpath  //*[@id='content-filters']
+    ultimate-owner                   xpath  //*[@id='content-view']/h2/a
+    gs-entity-titles-list-*          xpath  //*[@id='group-structure'] //div[1]
+    gs-county-list-*                 xpath  //*[@id='group-structure'] //div[2]
+    gs-perecntage-list-*             xpath  //*[@id='group-structure'] //div[3]
+    gs-entity-in-focus               xpath  //div[contains(@class,'entity focus')]
+    gs-first-entity                  xpath  //*[@id='group-structure']/ul/li[1]/div/div[1]
+
+= Group Structure =
+
+    # Verifying group strucuture section w.r.t country highlight section
+    group-structure-section:
+        width 1010 to 1030% of country-highlight-section/width
+        right-of country-highlight-section 60px
+
+    # Verifying group strucuture entity titles w.r.t country of operation
+    gs-entity-titles-list-1:
+        height 100% of gs-county-list-1/height
+        aligned horizontally all gs-county-list-1
+
+    # Verifying group structure percentage w.r.t country of operation
+    gs-perecntage-list-1:
+        height 100% of gs-county-list-1/height
+        aligned horizontally all gs-county-list-1
+        right-of gs-county-list-1 0px
+
+    # Verifying group structure header w.r.t ultimate owner
+    group-structure-header:
+        height 110 to 117% of ultimate-owner/height
+        aligned vertically left ultimate-owner
+        above ultimate-owner 20px
+
+    | group-structure-tree-section-* inside partly group-structure left
