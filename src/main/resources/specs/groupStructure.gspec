@@ -9,24 +9,24 @@
     ultimate-owner                   xpath  //*[@id='content-view']/h2/a
     gs-entity-titles-list-*          xpath  //*[@id='group-structure'] //div[1]
     gs-county-list-*                 xpath  //*[@id='group-structure'] //div[2]
-    gs-perecntage-list-*             xpath  //*[@id='group-structure'] //div[3]
+    gs-percentage-list-*             xpath  //*[@id='group-structure'] //div[3]
     gs-entity-in-focus               xpath  //div[contains(@class,'entity focus')]
     gs-first-entity                  xpath  //*[@id='group-structure']/ul/li[1]/div/div[1]
 
 = Group Structure =
 
-    # Verifying group strucuture section w.r.t country highlight section
+    # Verifying group structure section w.r.t country highlight section
     group-structure-section:
         width 1010 to 1030% of country-highlight-section/width
         right-of country-highlight-section 60px
 
-    # Verifying group strucuture entity titles w.r.t country of operation
+    # Verifying group structure entity titles w.r.t country of operation
     gs-entity-titles-list-1:
         height 100% of gs-county-list-1/height
         aligned horizontally all gs-county-list-1
 
     # Verifying group structure percentage w.r.t country of operation
-    gs-perecntage-list-1:
+    gs-percentage-list-1:
         height 100% of gs-county-list-1/height
         aligned horizontally all gs-county-list-1
         right-of gs-county-list-1 0px

@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class GroupStructure extends KYCTestBase {
 
     @Test
-    public void verifySubsidiariesSummaryPage(){
+    public void verifyGroupStructurePage(){
         openWebApp("");
         login(readProperties.getUboUser());
         openWebApp(readProperties.getUrl() + "/#/legalEntity/LE-6/ownership/groupStructure/summary");
