@@ -25,7 +25,7 @@ public class EntityDetails extends KYCTestBase {
         openWebApp("");
         login(readProperties.getUboUser());
         openWebApp(readProperties.getUrl() + "/#/legalEntity/" + fid + "/entityDetails");
-        checkPageLayout("specs/entitydetails.gspec");
+        checkPageLayout("specs/entityDetails.gspec");
     }
 
 }

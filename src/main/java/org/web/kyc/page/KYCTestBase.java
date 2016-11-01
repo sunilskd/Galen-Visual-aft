@@ -13,9 +13,6 @@ import java.io.IOException;
 
 import static java.util.Arrays.asList;
 
-/**
- * Created by sahug on 9/14/2016.
- */
 public class KYCTestBase extends GalenTestNgTestBase {
     private By user_login_input_box_id = By.xpath("//input[@id='login']");
     private By login_button_xpath = By.xpath("//button[1]");
