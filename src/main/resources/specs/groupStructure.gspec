@@ -1,4 +1,4 @@
-@script rules.js
+@script js/rules.js
 
 @objects
     header                           xpath  //*[@id='content-view']/div/h1
