@@ -7,11 +7,12 @@
     group-structure-section          xpath  //*[@id='group-structure'] /ul
     country-highlight-section        xpath  //*[@id='content-filters']
     ultimate-owner                   xpath  //*[@id='content-view']/h2/a
-    gs-entity-titles-list-*          xpath  //*[@id='group-structure'] //div[1]
-    gs-county-list-*                 xpath  //*[@id='group-structure'] //div[2]
-    gs-percentage-list-*             xpath  //*[@id='group-structure'] //div[3]
+    gs-entity-titles-list-*          xpath  //*[@id='group-structure'] //div/div[1]
+    gs-county-list-*                 xpath  //*[@id='group-structure'] //div/div[2]
+    gs-percentage-list-*             xpath  //*[@id='group-structure'] //div/div[3]
     gs-entity-in-focus               xpath  //div[contains(@class,'entity focus')]
     gs-first-entity                  xpath  //*[@id='group-structure']/ul/li[1]/div/div[1]
+    gs-entity-title-text-*           xpath  //*[@id='group-structure'] //div/div[1]/a
 
 = Group Structure =
 
@@ -21,20 +22,82 @@
         right-of country-highlight-section 60px
 
     # Verifying group structure entity titles w.r.t country of operation
-    gs-entity-titles-list-1:
-        height 100% of gs-county-list-1/height
-        aligned horizontally all gs-county-list-1
+    @forEach [gs-entity-titles-list-*] as item, index as i
+        ${item}:
+            height 100% of gs-county-list-${i}/height
+            aligned horizontally all gs-county-list-${i}
 
     # Verifying group structure percentage w.r.t country of operation
-    gs-percentage-list-1:
-        height 100% of gs-county-list-1/height
-        aligned horizontally all gs-county-list-1
-        right-of gs-county-list-1 0px
+    @forEach [gs-percentage-list-*] as item, index as i
+        ${item}:
+            height 100% of gs-county-list-${i}/height
+            aligned horizontally all gs-county-list-${i}
+            right-of gs-county-list-${i} 0px
 
     # Verifying group structure header w.r.t ultimate owner
     group-structure-header:
-        height 110 to 117% of ultimate-owner/height
+        height 110 to 125% of ultimate-owner/height
         aligned vertically left ultimate-owner
         above ultimate-owner 20px
 
+    # Verifying ultimate owner w.r.t first entity in the tree
+    ultimate-owner:
+        height 70 to 85.3% of gs-first-entity/height
+        above gs-first-entity 16 to 20px
+
     | group-structure-tree-section-* inside partly group-structure left
+
+= CSS =
+    # Verifying group structure header text
+    group-structure-header:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "19.2px"
+                css font-style is "normal"
+                css color is "rgba(153, 153, 153, 1)"
+
+    # Verifying ultimate owner text
+    ultimate-owner:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "16px"
+                css font-style is "normal"
+                css color is "rgba(0, 102, 153, 1)"
+
+    # Verifying entity titles text
+    gs-entity-title-text-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "14.4px"
+                css font-style is "normal"
+                css color is "rgba(0, 102, 153, 1)"
+
+    # Verifying country text
+    gs-county-list-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "14.4px"
+                css font-style is "normal"
+                css color is "rgba(102, 102, 102, 1)"
+
+    # Verifying percentage text
+    gs-percentage-list-*:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "14.4px"
+                css font-style is "normal"
+                css color is "rgba(102, 102, 102, 1)"
+
+    # Verifying entity in focus text
+    gs-entity-in-focus:
+                css font-family matches ".*rial.*"
+                css font-family matches ".*elvetica.*"
+                css font-family matches ".*ans-serif.*"
+                css font-size is "14.4px"
+                css font-style is "normal"
+                css color is "rgba(255, 102, 0, 1)"

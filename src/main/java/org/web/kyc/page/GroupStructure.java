@@ -8,8 +8,7 @@ public class GroupStructure extends KYCTestBase {
     public void verifyGroupStructurePage(){
         openWebApp("");
         login(readProperties.getUboUser());
-        openWebApp(readProperties.getUrl() + "/#/legalEntity/LE-6/ownership/groupStructure/summary");
-        //dumpPage("GroupStructure", "specs/groupStructure.gspec","groupStructure");
+        openWebApp(readProperties.getUrl() + "/#/legalEntity/846/ownership/groupStructure/summary");
         checkPageLayout("specs/groupStructure.gspec");
     }
 
