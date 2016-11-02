@@ -1,3 +1,6 @@
+@import footer.gspec
+
+
 @objects
 
     filter-section                          id  content-filters
