@@ -11,13 +11,14 @@ public class ReadProperties {
     private String url;
     private String browser;
     private String uboUser;
+    private String kycUser;
 
     public ReadProperties(){
-        setBrowser(getProjectProperties("visualTesting.properties","browserName"));
-        setUrl(getProjectProperties("visualTesting.properties","url"));
-        setUboUser(getProjectProperties("visualTesting.properties","uboUser"));
+        setBrowser(getProjectProperties("test.properties","kyc.web.browser"));
+        setUrl(getProjectProperties("test.properties","kyc.web.url"));
+        setUboUser(getProjectProperties("test.properties","kyc.ubo.user.login.id"));
+        setKycUser(getProjectProperties("test.properties","kyc.kyc.user.login.id"));
     }
-
 
     public String getProjectProperties(String propertyFile, String property) {
         Properties properties = new Properties();
@@ -49,10 +50,18 @@ public class ReadProperties {
         this.uboUser = uboUser;
     }
 
-
     public String getBrowser() {
         return browser;
     }
+
+    public String getKycUser() {
+        return kycUser;
+    }
+
+    public void setKycUser(String kycUser) {
+        this.kycUser = kycUser;
+    }
+
 
 
 

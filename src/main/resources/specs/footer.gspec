@@ -15,7 +15,7 @@
 
 
 
-= Footer Validation =
+= org.web.kyc.page.Footer Validation =
     @on desktop
         footer:
             inside partly screen  20px bottom
