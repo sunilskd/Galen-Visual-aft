@@ -28,4 +28,13 @@ public class DumpPage extends KYCTestBase {
         dumpPage("Subsidiaries", "specs/subsidiariesSummary.gspec","subsidiariesSummary");
     }
 
+    @Test
+    public void dumpGroupStructurePage(){
+        openWebApp("");
+        login(readProperties.getUboUser());
+        openWebApp(readProperties.getUrl() + "/#/legalEntity/846/ownership/groupStructure/summary");
+        dumpPage("GroupStructure", "specs/groupStructure.gspec","groupStructure");
+    }
+
+
 }
