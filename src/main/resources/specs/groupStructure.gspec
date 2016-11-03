@@ -17,7 +17,6 @@
 
     # Verifying group structure section w.r.t country highlight section
     group-structure-section:
-        width 1010 to 1030% of country-highlight-section/width
         right-of country-highlight-section 60px
 
     # Verifying group structure entity titles w.r.t country of operation
@@ -35,15 +34,14 @@
 
     # Verifying group structure header w.r.t ultimate owner
     header:
-        height 110 to 125% of ultimate-owner/height
         aligned vertically left ultimate-owner
         above ultimate-owner 20px
 
     # Verifying ultimate owner w.r.t first entity in the tree
     ultimate-owner:
-        height 70 to 85.3% of first-entity/height
         above first-entity 16 to 20px
 
+    # Verifying group structure section layout
     | group-structure-tree-section-* inside partly group-structure-section left
 
 = CSS =
