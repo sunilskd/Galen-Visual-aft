@@ -1,3 +1,5 @@
+@import footer.gspec
+
 @objects
     subsidiaries-list-*             xpath  //*[@id='subsidiaries']/tbody
     filter-section                  xpath   //*[@id='content-filters']

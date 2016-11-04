@@ -1,3 +1,5 @@
+@import footer.gspec
+
 @objects
 
     head-office-table                   xpath   //*[@id='entity-head-office'] //tr[th='Head Office']

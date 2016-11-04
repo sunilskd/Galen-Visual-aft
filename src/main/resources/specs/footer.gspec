@@ -1,0 +1,203 @@
+@objects
+    content             id      content
+    footer              id      footer
+    contact-us          xpath   //*[@id='footer']/ul/li[1]/a
+    help                xpath   //*[@id='footer']/ul/li[2]/a
+    portfolio           xpath   //*[@id='footer']/ul/li[3]/a
+    about-us            xpath   //*[@id='footer']/ul/li[4]/a
+    terms-condition     xpath   //*[@id='footer']/ul/li[5]/a
+    privacy-policy      xpath   //*[@id='footer']/ul/li[6]/a
+    disclaimer          xpath   //*[@id='footer']/ul/li[7]/a
+    editorial-policy    xpath   //*[@id='footer']/ul/li[8]/a
+    relx-logo           xpath   //*[@id='footer']/a[1]/span
+    accuity-logo        xpath   //*[@id='footer']/a[2]/span
+    copy-right-text     xpath   //*[@id='footer']/p
+
+
+
+
+
+= Verifying position of different links in footer  =
+
+
+    #Validating footer is at the bottom of the page
+    = Footer =
+            footer:
+                inside partly screen  ~21px bottom
+
+    #Validating contact-us link is present inside footer
+    = Contact-us =
+            contact-us:
+                height 25.5 to 30% of footer/height
+                inside footer  ~5px top, 20px left, ~30px bottom
+
+    #Validating help link is to the right side of contact link
+    = Help =
+            help:
+                aligned horizontally all contact-us
+                right-of contact-us 17px
+
+    #Validating portfolio link is to the right side of help link
+    = Portfolio =
+                portfolio:
+                    aligned horizontally all help
+                    right-of help 17px
+
+    #Validating about-us link is to the right side of portfolio link
+    = About-us =
+                about-us:
+                    aligned horizontally all portfolio
+                    right-of portfolio 17px
+
+    #Validating terms-condition link is to the right side of about-us link
+    = Terms and condition =
+                terms-condition:
+                    aligned horizontally all about-us
+                    right-of about-us 17px
+
+
+    #Validating privacy-policy link is to the right side of terms-condition link
+    = Privacy-policy =
+                privacy-policy:
+                    inside partly terms-condition 109 to 115px left
+                    aligned horizontally all terms-condition
+
+
+    #Validating disclaimer link is to the right side of privacy-policy link
+    = Disclaimer =
+                disclaimer:
+                    aligned horizontally all privacy-policy
+                    right-of privacy-policy 17px
+
+
+    #Validating editorial-policy link is to the right side of disclaimer link
+    = Editorial-policy =
+                editorial-policy:
+                    aligned horizontally all disclaimer
+                    right-of disclaimer 17px
+
+
+    #Validating relx-logo is to the right side of editorial-policy link
+    = Relx-Logo =
+                relx-logo:
+                    right-of editorial-policy ~ 51px
+
+    #Validating accuity-logo is to the right side of relx-log
+    = Accuity-logo =
+                accuity-logo:
+                    right-of relx-logo ~25px
+                    centered vertically inside relx-logo 1px
+
+
+    #Validating copy-right text is part of footer and below the other links
+    = Copyright text =
+                copy-right-text:
+                    inside partly footer  ~30px top, 20px left, ~6px bottom
+                    aligned vertically right footer
+                    below contact-us ~13px
+                    below portfolio ~13px
+                    below editorial-policy ~13px
+                    below relx-logo ~1px
+                    below accuity-logo ~1px
+
+= CSS =
+
+
+
+    # Verifying css for contact us link
+    = Contact-us =
+                contact-us:
+                    css font-family matches ".*rial.*"
+                    css font-family matches ".*elvetica.*"
+                    css font-family matches ".*ans-serif.*"
+                    css font-size is "11.2px"
+                    css font-style is "normal"
+                    css color is "rgba(0, 102, 153, 1)"
+
+
+    # Verifying css for help link
+    = Help =
+                help:
+                    css font-family matches ".*rial.*"
+                    css font-family matches ".*elvetica.*"
+                    css font-family matches ".*ans-serif.*"
+                    css font-size is "11.2px"
+                    css font-style is "normal"
+                    css color is "rgba(0, 102, 153, 1)"
+
+
+    # Verifying css for portfolio link
+    = Portfolio =
+                portfolio:
+                    css font-family matches ".*rial.*"
+                    css font-family matches ".*elvetica.*"
+                    css font-family matches ".*ans-serif.*"
+                    css font-size is "11.2px"
+                    css font-style is "normal"
+                    css color is "rgba(0, 102, 153, 1)"
+
+
+    # Verifying css for about-us link
+    = About-us =
+                about-us:
+                    css font-family matches ".*rial.*"
+                    css font-family matches ".*elvetica.*"
+                    css font-family matches ".*ans-serif.*"
+                    css font-size is "11.2px"
+                    css font-style is "normal"
+                    css color is "rgba(0, 102, 153, 1)"
+
+
+    # Verifying css for terms-condition link
+    = Terms and condition =
+                terms-condition:
+                    css font-family matches ".*rial.*"
+                    css font-family matches ".*elvetica.*"
+                    css font-family matches ".*ans-serif.*"
+                    css font-size is "11.2px"
+                    css font-style is "normal"
+                    css color is "rgba(0, 102, 153, 1)"
+
+
+    # Verifying css for privacy-policy link
+    = Privacy-policy =
+                privacy-policy:
+                    css font-family matches ".*rial.*"
+                    css font-family matches ".*elvetica.*"
+                    css font-family matches ".*ans-serif.*"
+                    css font-size is "11.2px"
+                    css font-style is "normal"
+                    css color is "rgba(0, 102, 153, 1)"
+
+
+    # Verifying css for disclaimer link
+    = Disclaimer =
+                disclaimer:
+                    css font-family matches ".*rial.*"
+                    css font-family matches ".*elvetica.*"
+                    css font-family matches ".*ans-serif.*"
+                    css font-size is "11.2px"
+                    css font-style is "normal"
+                    css color is "rgba(0, 102, 153, 1)"
+
+
+    # Verifying css for editorial-policy link
+    = Editorial-policy =
+                editorial-policy:
+                    css font-family matches ".*rial.*"
+                    css font-family matches ".*elvetica.*"
+                    css font-family matches ".*ans-serif.*"
+                    css font-size is "11.2px"
+                    css font-style is "normal"
+                    css color is "rgba(0, 102, 153, 1)"
+
+
+    # Verifying css for copy-right-text
+    = Copyright text =
+                copy-right-text:
+                    css font-family matches ".*rial.*"
+                    css font-family matches ".*elvetica.*"
+                    css font-family matches ".*ans-serif.*"
+                    css font-size is "11.2px"
+                    css font-style is "normal"
+                    css color is "rgba(102, 102, 102, 1)"
